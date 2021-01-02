@@ -173,5 +173,10 @@ function install_dependencies()
 
 install_dependencies
 
-log "Installing ronin. This may take a while ..."
-$sudo gem install ronin
+if ! command >/dev/null; then
+	log "Installing ronin. This may take a while ..."
+	$sudo gem install ronin
+else
+	warn "ronin is already installed. Updating ..."
+	$sudo gem update ronin
+fi
