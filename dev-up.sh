@@ -198,9 +198,9 @@ function auto_install_bundler()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(sqlite-devel libxml2-devel libxslt-devel) ;;
-		apt)	libraries=(libsqlite3-dev libxml2-dev libxslt1-dev) ;;
-		*)	libraries=(sqlite libxml2 libxslt) ;;
+		dnf|yum)libraries=(readlin-devel sqlite-devel libxml2-devel libxslt-devel) ;;
+		apt)	libraries=(libreadline-dev libsqlite3-dev libxml2-dev libxslt1-dev) ;;
+		*)	libraries=(readline sqlite libxml2 libxslt) ;;
 	esac
 
 	log "Installing external dependencies ..."
