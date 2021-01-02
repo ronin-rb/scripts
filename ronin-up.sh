@@ -158,13 +158,20 @@ function auto_install_ruby()
 detect_system
 auto_install_ruby
 
-log "Installing external dependencies ..."
-case "$package_manager" in
-	dnf|yum)	libraries=(sqlite-devel libxml2-devel libxslt-devel) ;;
-	apt)		libraries=(libsqlite-dev libxml2-dev libxslt1-dev) ;;
-	*)		libraries=(sqlite libxml2 libxslt) ;;
-esac
-install_packages "${libraries[@]}" || warn "Failed to install external dependencies. Proceeding anyways."
+function install_dependencies()
+{
+	case "$package_manager" in
+		dnf|yum)libraries=(sqlite-devel libxml2-devel libxslt-devel) ;;
+		apt)	libraries=(libsqlite-dev libxml2-dev libxslt1-dev) ;;
+		*)	libraries=(sqlite libxml2 libxslt) ;;
+	esac
+
+	log "Installing external dependencies ..."
+	install_packages "${libraries[@]}" ||
+	  warn "Failed to install external dependencies. Proceeding anyways."
+}
+
+install_dependencies
 
 log "Installing ronin. This may take a while ..."
 $sudo gem install ronin
