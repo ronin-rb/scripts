@@ -195,13 +195,26 @@ function auto_install_bundler()
 	fi
 }
 
+function install_dependencies()
+{
+	case "$package_manager" in
+		dnf|yum)libraries=(sqlite-devel libxml2-devel libxslt-devel) ;;
+		apt)	libraries=(libsqlite-dev libxml2-dev libxslt1-dev) ;;
+		*)	libraries=(sqlite libxml2 libxslt) ;;
+	esac
+
+	log "Installing external dependencies ..."
+	install_packages "${libraries[@]}" ||
+	  warn "Failed to install external dependencies. Proceeding anyways."
+}
+
 detect_system
 auto_install_git
 auto_install_ruby
 auto_install_bundler
+install_dependencies
 
 mkdir -p "$ronin_src_dir"
-pushd "$ronin_src_dir" >/dev/null
 
 for repo in "${github_repos[@]}"; do
 	github_uri="${github_base_uri}/${repo}.git"
@@ -215,7 +228,5 @@ for repo in "${github_repos[@]}"; do
 		  fail "Failed to clone ${repo}!"
 	fi
 done
-
-popd >/dev/null
 
 log "Successfully setup a development environment in $dest_dir"
