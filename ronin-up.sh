@@ -155,7 +155,25 @@ function auto_install_ruby()
 	fi
 }
 
+function auto_install_gcc()
+{
+	if ! command -v cc >/dev/null; then
+		log "Installing gcc ..."
+		install_packages gcc || fail "Failed to install gcc!"
+	fi
+}
+
+function auto_install_make()
+{
+	if ! command -v make >/dev/null; then
+		log "Install make ..."
+		install_packages make || fail "Failed to install make!"
+	fi
+}
+
 detect_system
+auto_install_gcc
+auto_install_make
 auto_install_ruby
 
 function install_dependencies()
