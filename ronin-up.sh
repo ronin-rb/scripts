@@ -162,7 +162,7 @@ function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(sqlite-devel libxml2-devel libxslt-devel) ;;
-		apt)	libraries=(libsqlite-dev libxml2-dev libxslt1-dev) ;;
+		apt)	libraries=(libsqlite3-dev libxml2-dev libxslt1-dev) ;;
 		*)	libraries=(sqlite libxml2 libxslt) ;;
 	esac
 
