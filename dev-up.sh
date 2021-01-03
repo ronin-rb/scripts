@@ -248,7 +248,7 @@ function install_dependencies()
 	esac
 
 	log "Installing external dependencies ..."
-	install_packages "${libraries[@]}" ||
+	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
 }
 
@@ -270,7 +270,7 @@ for repo in "${github_repos[@]}"; do
 		warn "Clone ${dest_dir} already exists. Skipping."
 	else
 		log "Cloning ${github_uri} ..."
-		git clone "$github_uri" "${dest_dir}" ||
+		git clone "$github_uri" "${dest_dir}" || \
 		  fail "Failed to clone ${repo}!"
 
 		pushd "$dest_dir" >/dev/null
