@@ -85,6 +85,17 @@ function detect_system()
 	detect_package_manager
 }
 
+function detect_rubygems()
+{
+	local gem_home="$(gem env GEM_HOME)"
+
+	if [[ -d "$gem_home" ]] && [[ ! -w "$gem_home" ]]; then
+		gem="sudo gem"
+	else
+		gem="gem"
+	fi
+}
+
 #
 # Installs a list of package names using the detected package manager.
 #
@@ -181,6 +192,8 @@ function auto_install_ruby()
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
+
+	detect_rubygems
 }
 
 function auto_install_gcc()
@@ -206,11 +219,11 @@ function auto_install_bundler()
 {
 	if ! command -v bundle >/dev/null; then
 		log "Installing bundler ..."
-		sudo gem install bundler -v "$bundler_version" ||
+		$gem install bundler -v "$bundler_version" ||
 			fail "Failed to install bundler!"
 	elif [[ $(bundler --version) == "Bundler version 1."* ]]; then
 		log "Updating bundler 1.x to 2.x ..."
-		sudo gem update bundler
+		$gem update bundler
 	fi
 }
 

@@ -68,6 +68,17 @@ function detect_system()
 	detect_package_manager
 }
 
+function detect_rubygems()
+{
+	local gem_home="$(gem env GEM_HOME)"
+
+	if [[ -d "$gem_home" ]] && [[ ! -w "$gem_home" ]]; then
+		gem="sudo gem"
+	else
+		gem="gem"
+	fi
+}
+
 #
 # Installs a list of package names using the detected package manager.
 #
@@ -153,6 +164,8 @@ function auto_install_ruby()
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
+
+	detect_rubygems
 }
 
 function auto_install_gcc()
@@ -193,8 +206,8 @@ install_dependencies
 
 if ! command >/dev/null; then
 	log "Installing ronin. This may take a while ..."
-	$sudo gem install ronin
+	$gem install ronin
 else
 	warn "ronin is already installed. Updating ..."
-	$sudo gem update ronin
+	$gem update ronin
 fi
