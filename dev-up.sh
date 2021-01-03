@@ -244,6 +244,11 @@ for repo in "${github_repos[@]}"; do
 		log "Cloning ${github_uri} ..."
 		git clone "$github_uri" "${dest_dir}" ||
 		  fail "Failed to clone ${repo}!"
+
+		pushd "$dest_dir" >/dev/null
+		# Have bundler install all gems into a shared gem dir
+		bundle config set path ../vendor/bundle >/dev/null
+		popd >/dev/null
 	fi
 done
 
