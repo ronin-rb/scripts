@@ -210,7 +210,7 @@ function install_dependencies()
 	esac
 
 	log "Installing external dependencies ..."
-	install_packages "${libraries[@]}" ||
+	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
 }
 

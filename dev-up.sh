@@ -233,7 +233,7 @@ function auto_install_bundler()
 		log "Installing bundler ..."
 		$gem install bundler -v "$bundler_version" ||
 			fail "Failed to install bundler!"
-	elif [[ $(bundler --version) == "Bundler version 1."* ]]; then
+	elif [[ "$(bundler --version)" == "Bundler version 1."* ]]; then
 		log "Updating bundler 1.x to 2.x ..."
 		$gem update bundler
 	fi
