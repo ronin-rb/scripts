@@ -165,6 +165,18 @@ function auto_install_ruby()
 		esac || fail "Failed to install ruby!"
 	fi
 
+	auto_install_rubygems
+}
+
+function auto_install_rubygems()
+{
+	if ! command -v gem >/dev/null; then
+		log "Installing rubygems ..."
+		case "$package_manager" in
+			dnf|yum)	install_packages rubygems ;;
+		esac
+	fi
+
 	detect_rubygems
 }
 
