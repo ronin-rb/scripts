@@ -12,6 +12,9 @@ github_repos=(
 	ronin-asm
 	ronin-exploits
 	ronin-db
+	ronin-rb.github.io
+	scripts
+	docker
 )
 
 src_dir="$HOME/src"
@@ -274,8 +277,10 @@ for repo in "${github_repos[@]}"; do
 		  fail "Failed to clone ${repo}!"
 
 		pushd "$dest_dir" >/dev/null
+
 		# Have bundler install all gems into a shared gem dir
 		bundle config set path ../vendor/bundle >/dev/null
+
 		popd >/dev/null
 	fi
 done
