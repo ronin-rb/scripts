@@ -278,8 +278,10 @@ for repo in "${github_repos[@]}"; do
 
 		pushd "$dest_dir" >/dev/null
 
-		# Have bundler install all gems into a shared gem dir
-		bundle config set path ../vendor/bundle >/dev/null
+		if [[ -f Gemfile ]]; then
+			# Have bundler install all gems into a shared gem dir
+			bundle config set path ../vendor/bundle >/dev/null
+		fi
 
 		popd >/dev/null
 	fi
