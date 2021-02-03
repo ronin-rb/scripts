@@ -21,3 +21,10 @@ A script that sets up a ronin-rb development environment.
 ```shell
 curl -o dev-up.sh https://github.com/ronin-rb/scripts/main/dev-up.sh && bash dev-up.sh
 ```
+
+## Contact
+
+[Slack](https://ronin-rb.slack.com) |
+[Discord](https://discord.gg/6WAb3PsVX9) |
+[Twitter](https://twitter.com/ronin_rb) |
+[IRC](https://ronin-rb.dev/irc/)
