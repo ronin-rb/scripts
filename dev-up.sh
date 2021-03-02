@@ -287,4 +287,4 @@ for repo in "${github_repos[@]}"; do
 	fi
 done
 
-log "Successfully setup a development environment in $dest_dir"
+log "Successfully setup a development environment in ${ronin_src_dir}"
