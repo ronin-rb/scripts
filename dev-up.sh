@@ -12,6 +12,7 @@ github_repos=(
 	ronin-asm
 	ronin-exploits
 	ronin-db
+	ronin-repos
 	ronin-rb.github.io
 	scripts
 	docker
