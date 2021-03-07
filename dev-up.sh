@@ -288,6 +288,7 @@ for repo in "${github_repos[@]}"; do
 	fi
 done
 
+ln -sf ronin-rb.github.io website
 popd >/dev/null
 
 log "Successfully setup a development environment in ${ronin_src_dir}"
