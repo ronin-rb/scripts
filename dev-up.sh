@@ -265,19 +265,19 @@ auto_install_bundler
 install_dependencies
 
 mkdir -p "$ronin_src_dir"
+pushd "$ronin_src_dir"/ >/dev/null
 
 for repo in "${github_repos[@]}"; do
 	github_uri="${github_base_uri}/${repo}.git"
-	dest_dir="${ronin_src_dir}/${repo}"
 
-	if [[ -d  "$dest_dir" ]]; then
+	if [[ -d  "$repo" ]]; then
 		warn "Clone ${dest_dir} already exists. Skipping."
 	else
 		log "Cloning ${github_uri} ..."
-		git clone "$github_uri" "${dest_dir}" || \
-		  fail "Failed to clone ${repo}!"
+		git clone "$github_uri" "$repo" || \
+		  fail "Failed to clone $repo!"
 
-		pushd "$dest_dir" >/dev/null
+		pushd "$repo" >/dev/null
 
 		if [[ -f Gemfile ]]; then
 			# Have bundler install all gems into a shared gem dir
@@ -287,5 +287,7 @@ for repo in "${github_repos[@]}"; do
 		popd >/dev/null
 	fi
 done
+
+popd >/dev/null
 
 log "Successfully setup a development environment in ${ronin_src_dir}"
