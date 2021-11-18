@@ -8,14 +8,14 @@
 
 A repository of useful shell scripts.
 
-## ronin.sh
+## ronin-install.sh
 
 A script that installs all of ronin, including external dependencies.
 
 ### curl && bash
 
 ```shell
-curl -o ronin.sh https://github.com/ronin-rb/scripts/main/ronin.sh && bash ronin.sh
+curl -o ronin.sh https://github.com/ronin-rb/scripts/main/ronin-install.sh && bash ronin-install.sh
 ```
 
 ## ronin-dev.sh
