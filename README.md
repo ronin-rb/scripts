@@ -14,6 +14,8 @@ A script that installs all of ronin, including external dependencies.
 
 ### curl && bash
 
+Copy and paste the following command into the terminal:
+
 ```shell
 curl -o ronin.sh https://github.com/ronin-rb/scripts/main/ronin-install.sh && bash ronin-install.sh
 ```
@@ -23,6 +25,8 @@ curl -o ronin.sh https://github.com/ronin-rb/scripts/main/ronin-install.sh && ba
 A script that sets up a ronin-rb development environment.
 
 ### curl && bash
+
+Copy and paste the following command into the terminal:
 
 ```shell
 curl -o ronin-dev.sh https://github.com/ronin-rb/scripts/main/ronin-dev.sh && bash ronin-dev.sh
