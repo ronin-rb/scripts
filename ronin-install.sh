@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+ronin_install_version="0.1.0"
+
 #
 # Sets os_platform and os_arch.
 #
@@ -196,6 +198,53 @@ function auto_install_make()
 	fi
 }
 
+function print_usage()
+{
+	cat <<USAGE
+usage: ./ronin-install.sh [OPTIONS]
+
+Options:
+	    --pre		Enables installing pre-release versions
+	-V, --version		Prints the version
+	-h, --help		Prints this message
+
+USAGE
+}
+
+function parse_options()
+{
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			--pre)
+				prerelease="true"
+				shift
+				;;
+			-V|--version)
+				echo "ronin-install: $ronin_install_version"
+				exit
+				;;
+			-h|--help)
+				print_usage
+				exit
+				;;
+			--)
+				shift
+				configure_opts=("$@")
+				break
+				;;
+			-*)
+				echo "ronin-install: unrecognized option $1" >&2
+				return 1
+				;;
+			*)
+				echo "ronin-install: additional arguments not allowed" >&2
+				return 1
+				;;
+		esac
+	done
+}
+
+parse_options "$@" || exit $?
 detect_system
 auto_install_gcc
 auto_install_make
@@ -217,8 +266,13 @@ function install_dependencies()
 install_dependencies
 
 if ! command ronin >/dev/null; then
-	log "Installing ronin. This may take a while ..."
-	$gem install ronin
+	if [[ "$prerelease" == "true" ]]; then
+		log "Installing ronin pre-release. This may take a while ..."
+		$gem install --pre ronin
+	else
+		log "Installing ronin. This may take a while ..."
+		$gem install ronin
+	fi
 else
 	warn "ronin is already installed. Updating ..."
 	$gem update ronin
