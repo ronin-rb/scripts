@@ -216,7 +216,7 @@ function install_dependencies()
 
 install_dependencies
 
-if ! command >/dev/null; then
+if ! command ronin >/dev/null; then
 	log "Installing ronin. This may take a while ..."
 	$gem install ronin
 else
