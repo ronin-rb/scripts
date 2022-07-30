@@ -236,11 +236,6 @@ function parse_options()
 				print_usage
 				exit
 				;;
-			--)
-				shift
-				configure_opts=("$@")
-				break
-				;;
 			-*)
 				echo "ronin-install: unrecognized option $1" >&2
 				return 1
