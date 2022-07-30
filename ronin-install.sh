@@ -278,6 +278,11 @@ if ! command ronin >/dev/null; then
 		$gem install ronin
 	fi
 else
-	warn "ronin is already installed. Updating ..."
-	$gem update ronin
+	if [[ "$prerelease" == "true" ]]; then
+		log "Updating ronin to the latest pre-release. This may take a while ..."
+		$gem install --prerelease ronin
+	else
+		warn "Updating ronin to the latest version. This may take a while ..."
+		$gem update ronin
+	fi
 fi
