@@ -67,7 +67,10 @@ function detect_system()
 {
 	detect_os
 	detect_sudo
-	detect_package_manager
+
+	if [[ -z "$package_manager" ]]; then
+		detect_package_manager
+	fi
 }
 
 function detect_rubygems()
@@ -204,6 +207,8 @@ function print_usage()
 usage: ./ronin-install.sh [OPTIONS]
 
 Options:
+	    --package-manager [apt|dnf|yum|pacman|zypper|brew|pkg|port]
+	    			Sets the package manager to use
 	    --pre		Enables installing pre-release versions
 	-V, --version		Prints the version
 	-h, --help		Prints this message
@@ -218,6 +223,10 @@ function parse_options()
 			--pre)
 				prerelease="true"
 				shift
+				;;
+			--package-manager)
+				package_manager="$2"
+				shift 2
 				;;
 			-V|--version)
 				echo "ronin-install: $ronin_install_version"
