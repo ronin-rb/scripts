@@ -5,17 +5,30 @@ bundler_version="~> 2.0"
 github_org="ronin-rb"
 github_base_uri="https://github.com/$github_org"
 github_repos=(
-	ronin-support
-	ronin
-	ronin-web
-	ronin-sql
-	ronin-asm
-	ronin-exploits
-	ronin-db
-	ronin-repos
-	ronin-rb.github.io
-	scripts
 	docker
+	ronin
+	ronin-agent-node
+	ronin-agent-php
+	ronin-agent-ruby
+	ronin-asm
+	ronin-core
+	ronin-db
+	ronin-db-activerecord
+	ronin-exploits
+	ronin-fuzzer
+	ronin-payloads
+	ronin-post_ex
+	ronin-rb.github.io
+	ronin-repos
+	ronin-sql
+	ronin-support
+	ronin-vuln-lfi
+	ronin-vuln-rfi
+	ronin-web
+	ronin-web-server
+	ronin-web-spider
+	ronin-web-user_agents
+	scripts
 )
 
 src_dir="$HOME/src"
