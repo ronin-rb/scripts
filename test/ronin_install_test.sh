@@ -6,22 +6,22 @@
 
 function test_gcc_installed()
 {
-	assertTrue "did not successfully install gcc" 'command -v gcc >/dev/null'
+	assertCommandInstalled "did not successfully install gcc" 'gcc'
 }
 
 function test_make_installed()
 {
-	assertTrue "did not successfully install make" 'command -v make >/dev/null'
+	assertCommandInstalled "did not successfully install make" 'make'
 }
 
 function test_ruby_installed()
 {
-	assertTrue "did not successfully install ruby" 'command -v ruby >/dev/null'
+	assertCommandInstalled "did not successfully install ruby" 'ruby'
 }
 
 function test_ronin_install()
 {
-	assertTrue "did not successfully install ronin" 'command -v ronin >/dev/null'
+	assertCommandInstalled "did not successfully install ronin" 'ronin'
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2

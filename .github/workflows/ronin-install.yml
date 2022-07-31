@@ -11,7 +11,7 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-    name: "Tests [${{ matrix.os }}]"
+    name: "ronin-install on [${{ matrix.os }}]"
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -25,4 +25,4 @@ jobs:
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
-        run: make test
+        run: make test_install
