@@ -44,7 +44,7 @@ jobs:
 
   opensuse:
     runs-on: ubuntu-latest
-    container: opensuse:latest
+    container: opensuse/leap:latest
     name: "ronin-dev.sh on OpenSUSE"
     steps:
       - uses: actions/checkout@v2
