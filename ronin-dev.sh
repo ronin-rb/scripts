@@ -253,7 +253,7 @@ function auto_install_bundler()
 		log "Installing bundler ..."
 		$gem install bundler -v "$bundler_version" ||
 			fail "Failed to install bundler!"
-	elif [[ "$(bundler --version)" == "Bundler version 1."* ]]; then
+	elif [[ "$(bundle --version)" == "Bundler version 1."* ]]; then
 		log "Updating bundler 1.x to 2.x ..."
 		$gem update bundler
 	fi
@@ -298,7 +298,7 @@ for repo in "${github_repos[@]}"; do
 
 		if [[ -f Gemfile ]]; then
 			# Have bundler install all gems into a shared gem dir
-			bundle config set --local path ../vendor/bundle >/dev/null
+			bundle config set --local path ../vendor/bundle >/dev/null || fail "Failed to run 'bundle config'"
 		fi
 
 		popd >/dev/null
