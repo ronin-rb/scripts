@@ -102,7 +102,7 @@ function detect_system()
 	detect_package_manager
 }
 
-function detect_rubygems()
+function detect_rubygems_install_dir()
 {
 	local gem_home="$(gem env GEM_HOME)"
 
@@ -227,7 +227,7 @@ function auto_install_rubygems()
 		esac
 	fi
 
-	detect_rubygems
+	detect_rubygems_install_dir
 }
 
 function auto_install_gcc()
