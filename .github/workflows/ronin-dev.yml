@@ -17,28 +17,56 @@ on:
       - test/ronin_dev_test.sh
 
 jobs:
-  linux:
+  ubuntu:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        container:
-          - ubuntu:latest
-          - fedora:latest
-          - opensuse:latest
-          - archlinux:latest
-    container: ${{ matrix.container }}
-    name: "ronin-dev.sh on Linux (${{ matrix.container }})"
+    name: "ronin-dev.sh on Ubuntu"
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: |
-          apt-get update -y && \
-          apt-get install -y shunit2
+        run: sudo apt-get update -qq -y && sudo apt-get install -qq -y shunit2
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
-        run: make test_dev
+        run: ./test/ronin_dev_test.sh
+
+  fedora:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    name: "ronin-dev.sh on Fedora Linux"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: dnf update -q -y && dnf install -q -y shunit2
+      - name: Configure env
+        run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
+      - name: Run tests
+        run: ./test/ronin_dev_test.sh
+
+  opensuse:
+    runs-on: ubuntu-latest
+    container: opensuse:latest
+    name: "ronin-dev.sh on OpenSUSE"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: zypper ref && zypper --non-interactive in shunit2
+      - name: Configure env
+        run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
+      - name: Run tests
+        run: ./test/ronin_dev_test.sh
+
+  archlinux:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    name: "ronin-dev.sh on OpenSUSE"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pacman -Syu && pacman -S shunit2
+      - name: Configure env
+        run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
+      - name: Run tests
+        run: ./test/ronin_dev_test.sh
 
   macos:
     runs-on: macos-latest
@@ -46,8 +74,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: brew install wget shunit2
+        run: brew install shunit2
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
-        run: make test_dev
+        run: ./test/ronin_dev_test.sh
