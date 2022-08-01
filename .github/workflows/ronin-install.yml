@@ -1,6 +1,20 @@
 name: CI
 
-on: [ push, pull_request ]
+on:
+  push:
+    paths:
+      - .github/workflows/ronin-install.yml
+      - Makefile
+      - ronin-install.sh
+      - test/helper.sh
+      - test/ronin_install_test.sh
+  pull_request:
+    paths:
+      - .github/workflows/ronin-install.yml
+      - Makefile
+      - ronin-install.sh
+      - test/helper.sh
+      - test/ronin_install_test.sh
 
 jobs:
   tests:
