@@ -164,7 +164,7 @@ function auto_install_ruby()
 	if ! command -v ruby >/dev/null; then
 		log "Installing ruby ..."
 		case "$package_manager" in
-			dnf|yum)	install_packages ruby-devel ;;
+			dnf|yum|zypper)	install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
