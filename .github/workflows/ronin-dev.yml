@@ -58,7 +58,7 @@ jobs:
   archlinux:
     runs-on: ubuntu-latest
     container: archlinux:latest
-    name: "ronin-dev.sh on OpenSUSE"
+    name: "ronin-dev.sh on ArchLinux"
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
