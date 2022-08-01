@@ -62,7 +62,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: pacman -Syu --noconfirm && pacman -S --noconfirm shunit2
+        run: pacman -Syu --noconfirm && pacman -Sy --noconfirm shunit2
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
