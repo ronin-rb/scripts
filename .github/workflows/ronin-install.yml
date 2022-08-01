@@ -63,14 +63,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: |
-          pacman -Sy --noconfirm archlinux-keyring && \
-          pacman-key --populate && \
-          pacman-key --refresh-keys && \
-          pacman -Syyu --noconfirm && \
-          pacman-db-upgrade && \
-          update-ca-trust && \
           pacman -Syu --noconfirm && \
-          pacman -Sy --noconfirm shunit2
+          pacman -Sy --noconfirm git base base-devel && \
+          useradd -d /home/makepkg makepkg && \
+          mkdir -p /home/makepkg/{.config/pacman,.gnupg,out} && \
+          chown -R makepkg:users /home/makepkg && \
+          sudo -u makepkg /bin/bash -c "cd /home/makepkg && git clone --quiet --depth 1 https://aur.archlinux.org/shunit2.git && cd shunit2/ && makepkg" && \
+          pacman -U --noconfirm /home/makepkg/shunit2/shunit2-*.pkg.tar.zst
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
