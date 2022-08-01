@@ -272,7 +272,7 @@ function install_dependencies()
 
 install_dependencies
 
-if ! command ronin >/dev/null; then
+if ! command -v ronin >/dev/null; then
 	if [[ "$prerelease" == "true" ]]; then
 		log "Installing ronin pre-release. This may take a while ..."
 		$gem install --prerelease ronin
