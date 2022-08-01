@@ -138,7 +138,7 @@ function install_packages()
 			local missing_pkgs=($(pacman -T "$@"))
 
 			if (( ${#missing_pkgs[@]} > 0 )); then
-				$sudo pacman -S "${missing_pkgs[@]}" || return $?
+				$sudo pacman -Sy "${missing_pkgs[@]}" || return $?
 			fi
 			;;
 		zypper) $sudo zypper -n in -l $* || return $? ;;
