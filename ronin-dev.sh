@@ -349,7 +349,7 @@ for repo in "${github_repos[@]}"; do
 	github_uri="${github_base_uri}/${repo}.git"
 
 	if [[ -d  "$repo" ]]; then
-		warn "Clone ${dest_dir} already exists. Skipping."
+		warn "Clone ${repo} already exists. Skipping."
 	else
 		log "Cloning ${github_uri} ..."
 		git clone "$github_uri" "$repo" || \
