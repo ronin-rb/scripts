@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+gem_opts=(--no-format-executable)
+
 bundler_version="~> 2.0"
 
 github_org="ronin-rb"
@@ -114,6 +116,7 @@ function detect_rubygems_install_dir()
 
 	if [[ -d "$gem_home" ]] && [[ ! -w "$gem_home" ]]; then
 		gem="sudo gem"
+		gem_opts+=(--no-user-install)
 	else
 		gem="gem"
 	fi
@@ -259,11 +262,11 @@ function auto_install_bundler()
 {
 	if ! command -v bundle >/dev/null; then
 		log "Installing bundler ..."
-		$gem install --no-format-executable bundler -v "$bundler_version" ||
+		$gem install ${gem_opts[@]} bundler -v "$bundler_version" ||
 			fail "Failed to install bundler!"
 	elif [[ "$(bundle --version)" == "Bundler version 1."* ]]; then
 		log "Updating bundler 1.x to 2.x ..."
-		$gem update --no-format-executable bundler
+		$gem update ${gem_opts[@]} bundler
 	fi
 }
 

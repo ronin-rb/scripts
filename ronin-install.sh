@@ -2,6 +2,8 @@
 
 ronin_install_version="0.1.0"
 
+gem_opts=(--no-format-executable)
+
 #
 # Sets os_platform and os_arch.
 #
@@ -85,6 +87,7 @@ function detect_rubygems_install_dir()
 
 	if [[ -d "$gem_home" ]] && [[ ! -w "$gem_home" ]]; then
 		gem="sudo gem"
+		gem_opts+=(--no-user-install)
 	else
 		gem="gem"
 	fi
@@ -233,6 +236,7 @@ function parse_options()
 		case "$1" in
 			--pre)
 				prerelease="true"
+				gem_opts+=(--prerelease)
 				shift
 				;;
 			--package-manager)
@@ -284,17 +288,17 @@ install_dependencies
 if ! command -v ronin >/dev/null; then
 	if [[ "$prerelease" == "true" ]]; then
 		log "Installing ronin pre-release. This may take a while ..."
-		$gem install --no-format-executable --prerelease ronin
 	else
 		log "Installing ronin. This may take a while ..."
-		$gem install --no-format-executable ronin
 	fi
+
+	$gem install ${gem_opts[@]} ronin
 else
 	if [[ "$prerelease" == "true" ]]; then
 		log "Updating ronin to the latest pre-release. This may take a while ..."
-		$gem install --no-format-executable --prerelease ronin
 	else
-		warn "Updating ronin to the latest version. This may take a while ..."
-		$gem update --no-format-executable ronin
+		log "Updating ronin to the latest version. This may take a while ..."
 	fi
+
+	$gem update ${gem_opts[@]} ronin
 fi
