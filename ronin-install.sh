@@ -276,17 +276,17 @@ install_dependencies
 if ! command -v ronin >/dev/null; then
 	if [[ "$prerelease" == "true" ]]; then
 		log "Installing ronin pre-release. This may take a while ..."
-		$gem install --prerelease ronin
+		$gem install --no-format-executable --prerelease ronin
 	else
 		log "Installing ronin. This may take a while ..."
-		$gem install ronin
+		$gem install --no-format-executable ronin
 	fi
 else
 	if [[ "$prerelease" == "true" ]]; then
 		log "Updating ronin to the latest pre-release. This may take a while ..."
-		$gem install --prerelease ronin
+		$gem install --no-format-executable --prerelease ronin
 	else
 		warn "Updating ronin to the latest version. This may take a while ..."
-		$gem update ronin
+		$gem update --no-format-executable ronin
 	fi
 fi

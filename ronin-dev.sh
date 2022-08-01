@@ -251,11 +251,11 @@ function auto_install_bundler()
 {
 	if ! command -v bundle >/dev/null; then
 		log "Installing bundler ..."
-		$gem install bundler -v "$bundler_version" ||
+		$gem install --no-format-executable bundler -v "$bundler_version" ||
 			fail "Failed to install bundler!"
 	elif [[ "$(bundle --version)" == "Bundler version 1."* ]]; then
 		log "Updating bundler 1.x to 2.x ..."
-		$gem update bundler
+		$gem update --no-format-executable bundler
 	fi
 }
 
