@@ -335,7 +335,6 @@ function parse_options()
 
 parse_options "$@" || exit $?
 detect_system
-echo "package_manager=$package_manager"
 auto_install_git
 auto_install_gcc
 auto_install_make
