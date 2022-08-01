@@ -38,7 +38,7 @@ function detect_package_manager()
 				if command -v apt-get >/dev/null; then
 					package_manager="apt"
 				fi
-			elif [[ -f /etc/SuSE-release ]] || [[ -f /etc/os-relase ]]; then
+			elif [[ -f /etc/SuSE-release ]] || [[ -f /etc/os-release ]]; then
 				if command -v zypper >/dev/null; then
 					package_manager="zypper"
 				fi
