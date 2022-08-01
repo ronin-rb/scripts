@@ -166,6 +166,7 @@ function auto_install_ruby()
 		case "$package_manager" in
 			dnf|yum|zypper)	install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
+			pacman)		install_packages community/ruby ;;
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
@@ -179,6 +180,7 @@ function auto_install_rubygems()
 		log "Installing rubygems ..."
 		case "$package_manager" in
 			dnf|yum)	install_packages rubygems ;;
+			pacman)		install_packages community/rubygems ;;
 			*)
 				fail "rubygems was not installed along with ruby. Aborting!"
 				;;
