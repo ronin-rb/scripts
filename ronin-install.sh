@@ -261,6 +261,7 @@ function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(readline-devel sqlite-devel libxml2-devel libxslt-devel) ;;
+		zypper)	libraries=(readline-devel sqlite3-devel libxml2-devel libxslt-devel) ;;
 		apt)	libraries=(libreadline-dev libsqlite3-dev libxml2-dev libxslt1-dev) ;;
 		*)	libraries=(readline sqlite libxml2 libxslt) ;;
 	esac
