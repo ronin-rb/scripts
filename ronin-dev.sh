@@ -285,6 +285,55 @@ function install_dependencies()
 	  warn "Failed to install external dependencies. Proceeding anyways."
 }
 
+function print_usage()
+{
+	cat <<USAGE
+usage: ./ronin-dev.sh [OPTIONS] [REPO ...]
+
+Options:
+	    --package-manager [apt|dnf|yum|pacman|zypper|brew|pkg|port]
+	    			Sets the package manager to use
+	-V, --version		Prints the version
+	-h, --help		Prints this message
+
+USAGE
+}
+
+function parse_options()
+{
+	local argv=()
+
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			--package-manager)
+				package_manager="$2"
+				shift 2
+				;;
+			-V|--version)
+				echo "ronin-dev: $ronin_install_version"
+				exit
+				;;
+			-h|--help)
+				print_usage
+				exit
+				;;
+			-*)
+				echo "ronin-dev: unrecognized option $1" >&2
+				return 1
+				;;
+			*)
+				argv+=($1)
+				shift
+				;;
+		esac
+	done
+
+	if (( ${#argv[@]} > 0 )); then
+		github_repos=("${argv[@]}")
+	fi
+}
+
+parse_options "$@" || exit $?
 detect_system
 echo "package_manager=$package_manager"
 auto_install_git
