@@ -44,7 +44,7 @@ jobs:
 
   opensuse:
     runs-on: ubuntu-latest
-    container: opensuse/leap:latest
+    container: opensuse/tumbleweed:latest
     name: "ronin-dev.sh on OpenSUSE"
     steps:
       - name: Install dependencies
