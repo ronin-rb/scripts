@@ -48,7 +48,7 @@ jobs:
     name: "ronin-dev.sh on OpenSUSE"
     steps:
       - name: Install dependencies
-        run: zypper ref && zypper --non-interactive in tar shunit2
+        run: zypper ref && zypper --non-interactive in tar gzip shunit2
       - uses: actions/checkout@v2
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
