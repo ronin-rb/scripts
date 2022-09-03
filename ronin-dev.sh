@@ -13,7 +13,8 @@ github_repos=(
 	ronin-agent-node
 	ronin-agent-php
 	ronin-agent-ruby
-	ronin-asm
+	ronin-code-asm
+	ronin-code-sql
 	ronin-core
 	ronin-db
 	ronin-db-activerecord
@@ -23,7 +24,6 @@ github_repos=(
 	ronin-post_ex
 	ronin-rb.github.io
 	ronin-repos
-	ronin-sql
 	ronin-support
 	ronin-vuln
 	ronin-web
