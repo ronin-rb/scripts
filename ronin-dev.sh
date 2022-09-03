@@ -25,8 +25,7 @@ github_repos=(
 	ronin-repos
 	ronin-sql
 	ronin-support
-	ronin-vuln-lfi
-	ronin-vuln-rfi
+	ronin-vuln
 	ronin-web
 	ronin-web-server
 	ronin-web-spider
