@@ -66,7 +66,7 @@ function test_ronin_agent_ruby_repo()
 
 function test_ronin_asm_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-asm repo" "$HOME/src/ronin-rb/ronin-asm"
+	assertGitRepo "did not successfully git clone the ronin-code-asm repo" "$HOME/src/ronin-rb/ronin-code-asm"
 }
 
 function test_ronin_core_repo()
@@ -121,7 +121,7 @@ function test_ronin_repos_repo()
 
 function test_ronin_sql_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-sql repo" "$HOME/src/ronin-rb/ronin-sql"
+	assertGitRepo "did not successfully git clone the ronin-code-sql repo" "$HOME/src/ronin-rb/ronin-code-sql"
 }
 
 function test_ronin_support_repo()
@@ -129,14 +129,9 @@ function test_ronin_support_repo()
 	assertGitRepo "did not successfully git clone the ronin-support repo" "$HOME/src/ronin-rb/ronin-support"
 }
 
-function test_ronin_vuln_lfi_repo()
+function test_ronin_vuln_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-vuln-lfi repo" "$HOME/src/ronin-rb/ronin-vuln-lfi"
-}
-
-function test_ronin_vuln_rfi_repo()
-{
-	assertGitRepo "did not successfully git clone the ronin-vuln-rfi repo" "$HOME/src/ronin-rb/ronin-vuln-rfi"
+	assertGitRepo "did not successfully git clone the ronin-vuln repo" "$HOME/src/ronin-rb/ronin-vuln"
 }
 
 function test_ronin_web_repo()
