@@ -129,9 +129,9 @@ function test_ronin_support_repo()
 	assertGitRepo "did not successfully git clone the ronin-support repo" "$HOME/src/ronin-rb/ronin-support"
 }
 
-function test_ronin_vuln_repo()
+function test_ronin_vulns_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-vuln repo" "$HOME/src/ronin-rb/ronin-vuln"
+	assertGitRepo "did not successfully git clone the ronin-vulns repo" "$HOME/src/ronin-rb/ronin-vulns"
 }
 
 function test_ronin_web_repo()

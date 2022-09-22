@@ -25,7 +25,7 @@ github_repos=(
 	ronin-rb.github.io
 	ronin-repos
 	ronin-support
-	ronin-vuln
+	ronin-vulns
 	ronin-web
 	ronin-web-server
 	ronin-web-spider
