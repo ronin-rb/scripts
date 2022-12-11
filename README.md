@@ -2,8 +2,7 @@
 
 * [Website](https://ronin-rb.dev)
 * [Issues](https://github.com/ronin-rb/scripts/issues)
-* [Slack](https://ronin-rb.slack.com) |
-  [Discord](https://discord.gg/6WAb3PsVX9) |
+* [Discord](https://discord.gg/6WAb3PsVX9) |
   [Twitter](https://twitter.com/ronin_rb)
 
 A repository of useful shell scripts.
