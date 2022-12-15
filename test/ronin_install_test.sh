@@ -14,9 +14,13 @@ function test_make_installed()
 	assertCommandInstalled "did not successfully install make" 'make'
 }
 
-function test_ruby_installed()
+function test_ruby_3_x_installed()
 {
 	assertCommandInstalled "did not successfully install ruby" 'ruby'
+
+	local ruby_version="$(ruby -e 'print RUBY_VERSION')"
+
+	assertTrue "did not install ruby-3.x" '[[ "$ruby_version" == "3."* ]]'
 }
 
 function test_ronin_install()

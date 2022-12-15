@@ -72,6 +72,13 @@ function detect_package_manager()
 	esac
 }
 
+function detect_ruby_version()
+{
+	if command -v ruby >/dev/null; then
+		ruby_version="$(ruby -e 'print RUBY_VERSION')"
+	fi
+}
+
 function detect_system()
 {
 	detect_os
@@ -80,6 +87,8 @@ function detect_system()
 	if [[ -z "$package_manager" ]]; then
 		detect_package_manager
 	fi
+
+	detect_ruby_version
 }
 
 function detect_rubygems_install_dir()
@@ -171,8 +180,9 @@ function fail()
 #
 function auto_install_ruby()
 {
-	if ! command -v ruby >/dev/null; then
-		log "Installing ruby ..."
+	# check if ruby-3.x is installed
+	if [[ ! "$ruby_version" == "3."* ]]; then
+		log "Installing ruby 3.x ..."
 		case "$package_manager" in
 			dnf|yum|zypper)	install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
