@@ -6,6 +6,62 @@ gem="gem"
 gem_opts=(--no-format-executable)
 
 #
+# Prints a log message.
+#
+function log()
+{
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m$1\x1b[0m"
+	else
+		echo ">>> $1"
+	fi
+}
+
+#
+# Prints a warn message.
+#
+function warn()
+{
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m$1\x1b[0m" >&2
+	else
+		echo "*** $1" >&2
+	fi
+}
+
+#
+# Prints an error message.
+#
+function error()
+{
+	if [[ -t 1 ]]; then
+		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m$1\x1b[0m" >&2
+	else
+		echo "!!! $1" >&2
+	fi
+}
+
+#
+# Prints an error message and exists with -1.
+#
+function fail()
+{
+	error "$@"
+	exit -1
+}
+
+#
+# Checks that $LANG is set correctly.
+#
+function check_lang()
+{
+	if [[ "$LANG" == "C" ]]; then
+		error "ruby will not work properly with LANG=C"
+		fail "Please set LANG to en_US.UTF-8 or another UTF-8 language"
+	fi
+}
+
+#
 # Sets os_platform and os_arch.
 #
 function detect_os()
@@ -74,6 +130,7 @@ function detect_package_manager()
 
 function detect_system()
 {
+	check_lang
 	detect_os
 	detect_sudo
 
@@ -119,51 +176,6 @@ function install_packages()
 		zypper) $sudo zypper -n in -l $* || return $? ;;
 		"")	warn "Could not determine Package Manager. Proceeding anyway." ;;
 	esac
-}
-
-#
-# Prints a log message.
-#
-function log()
-{
-	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[32m>>>\x1b[0m \x1b[1m$1\x1b[0m"
-	else
-		echo ">>> $1"
-	fi
-}
-
-#
-# Prints a warn message.
-#
-function warn()
-{
-	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[33m***\x1b[0m \x1b[1m$1\x1b[0m" >&2
-	else
-		echo "*** $1" >&2
-	fi
-}
-
-#
-# Prints an error message.
-#
-function error()
-{
-	if [[ -t 1 ]]; then
-		echo -e "\x1b[1m\x1b[31m!!!\x1b[0m \x1b[1m$1\x1b[0m" >&2
-	else
-		echo "!!! $1" >&2
-	fi
-}
-
-#
-# Prints an error message and exists with -1.
-#
-function fail()
-{
-	error "$@"
-	exit -1
 }
 
 #
