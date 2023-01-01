@@ -13,8 +13,8 @@ A repository of useful shell scripts.
 * Installs [ronin] or sets up a local development environment.
 * Optionally supports installing pre-releases.
 * Auto-detects the OS (supports Linux, macOS, and FreeBSD).
-* Auto-detects the package manager ([apt], [dnf], [yum], [pacman], [zypper],
-  [pkg], [macports], [brew]).
+* Auto-detects the package manager (supports [apt], [dnf], [yum], [pacman],
+  [zypper], [pkg], [macports], [brew]).
 * Auto-installs any missing external dependencies via the package manager:
   * [libreadline]
   * [libxml2]
