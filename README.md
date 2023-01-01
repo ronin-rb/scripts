@@ -6,7 +6,7 @@
   [Twitter](https://twitter.com/ronin_rb) |
   [Mastodon](https://infosec.exchange/@ronin_rb)
 
-A repository of useful shell scripts.
+A repository of useful setup scripts.
 
 ## Features
 
