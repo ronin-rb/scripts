@@ -27,7 +27,7 @@ A repository of useful shell scripts.
 
 ## ronin-install.sh
 
-A script that installs all of ronin, including external dependencies.
+A script that installs all of [ronin], including external dependencies.
 
 ### curl && bash
 
@@ -48,7 +48,7 @@ wget -O ronin-install.sh https://raw.githubusercontent.com/ronin-rb/scripts/main
 
 ## ronin-dev.sh
 
-A script that sets up a ronin-rb development environment.
+A script that sets up a [ronin-rb] development environment.
 
 ### curl && bash
 
@@ -67,6 +67,7 @@ command into the terminal:
 wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ronin-dev.sh && bash ronin-dev.sh
 ```
 
+[ronin-rb]: https://github.com/ronin-rb/
 [ronin]: https://github.com/ronin-rb/ronin#readme
 
 [apt]: http://wiki.debian.org/Apt
