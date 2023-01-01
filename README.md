@@ -48,7 +48,7 @@ wget -O ronin-install.sh https://raw.githubusercontent.com/ronin-rb/scripts/main
 
 ## ronin-dev.sh
 
-A script that sets up a [ronin-rb] development environment.
+A script that sets up a local [ronin-rb] development environment.
 
 ### curl && bash
 
