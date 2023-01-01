@@ -336,6 +336,8 @@ if ! command -v ronin >/dev/null; then
 	fi
 
 	$gem install ${gem_opts[@]} ronin
+
+	log "ronin is now fully installed!"
 else
 	if [[ "$prerelease" == "true" ]]; then
 		log "Updating ronin to the latest pre-release. This may take a while ..."
@@ -344,4 +346,6 @@ else
 	fi
 
 	$gem update ${gem_opts[@]} ronin
+
+	log "ronin has successfully been upgraded!"
 fi
