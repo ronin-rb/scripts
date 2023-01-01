@@ -20,6 +20,15 @@ Copy and paste the following command into the terminal:
 curl -o ronin-install.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ronin-install.sh && bash ronin-install.sh
 ```
 
+### wget && bash
+
+If you have `wget` installed instead of `curl`, copy and paste the following
+command into the terminal:
+
+```shell
+wget -O ronin-install.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ronin-install.sh && bash ronin-install.sh
+```
+
 ## ronin-dev.sh
 
 A script that sets up a ronin-rb development environment.
@@ -32,3 +41,11 @@ Copy and paste the following command into the terminal:
 curl -o ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ronin-dev.sh && bash ronin-dev.sh
 ```
 
+### wget && bash
+
+If you have `wget` installed instead of `curl`, copy and paste the following
+command into the terminal:
+
+```shell
+wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ronin-dev.sh && bash ronin-dev.sh
+```
