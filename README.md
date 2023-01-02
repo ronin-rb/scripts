@@ -86,3 +86,4 @@ wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ron
 [gcc]: http://gcc.gnu.org/
 [make]: https://www.gnu.org/software/automake/
 [ruby]: https://www.ruby-lang.org/
+[rubygems]: https://github.com/rubygems/rubygems#readme
