@@ -8,6 +8,16 @@
 
 A repository of useful setup scripts.
 
+## What is Ronin?
+
+[Ronin][ronin] is a [Ruby] toolkit for security research and development.
+Ronin contains many different [CLI commands][Synopsis] and
+[Ruby libraries][GitHub] for a variety of security tasks, such as
+encoding/decoding data, filter IPs/hosts/URLs, querying ASNs, querying DNS,
+HTTP, scanning for web vulnerabilities, spidering websites, install 3rd party
+repositories of exploits and/or payloads, run exploits, generating new exploits,
+managing local databases, fuzzing data, and much more.
+
 ## Features
 
 * Installs [ronin] or sets up a local development environment.
@@ -69,6 +79,9 @@ wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ron
 
 [ronin-rb]: https://github.com/ronin-rb/
 [ronin]: https://github.com/ronin-rb/ronin#readme
+[Ruby]: https://www.ruby-lang.org/
+[Synopsis]: https://github.com/ronin-rb/ronin#synopsis
+[GitHub]: https://github.com/ronin-rb/
 
 [apt]: http://wiki.debian.org/Apt
 [dnf]: https://fedoraproject.org/wiki/Features/DNF
