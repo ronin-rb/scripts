@@ -16,32 +16,11 @@ function test_make_installed()
 
 function test_ruby_3_x_installed()
 {
+	# check if ruby-3.x is already installed
 	if [[ "$test_ruby_version" == "3."* ]]; then
 		return
 	fi
 
-	if [[ "$(uname -s)" == "Darwin" ]]; then
-		local ruby_path="$(brew --prefix ruby)/bin/ruby"
-
-		assertTrue "did not install ruby via homebrew" \
-			   '[[ -x "$ruby_path" ]]'
-
-		local ruby_version="$("$ruby_path" -e 'print RUBY_VERSION')"
-
-		assertTrue "did not install ruby-3.x" \
-			   '[[ "$ruby_version" == "3."* ]]'
-	else
-		assertCommandInstalled "did not successfully install ruby" 'ruby'
-
-		local ruby_version="$(ruby -e 'print RUBY_VERSION')"
-
-		assertTrue "did not install ruby-3.x" \
-			   '[[ "$ruby_version" == "3."* ]]'
-	fi
-}
-
-function test_ronin_install()
-{
 	if [[ "$(uname -s)" == "Darwin" ]]; then
 		local zshrc="$(cat ~/.zshrc)"
 
@@ -56,6 +35,16 @@ function test_ronin_install()
 		hash -r
 	fi
 
+	assertCommandInstalled "did not successfully install ruby" 'ruby'
+
+	local ruby_version="$(ruby -e 'print RUBY_VERSION')"
+
+	assertTrue "did not install ruby-3.x" \
+		   '[[ "$ruby_version" == "3."* ]]'
+}
+
+function test_ronin_install()
+{
 	assertCommandInstalled "did not successfully install ronin" 'ronin'
 }
 
