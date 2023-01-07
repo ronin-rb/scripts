@@ -16,6 +16,10 @@ function test_make_installed()
 
 function test_ruby_3_x_installed()
 {
+	if [[ "$test_ruby_version" == "3."* ]]; then
+		return
+	fi
+
 	if [[ "$(uname -s)" == "Darwin" ]]; then
 		local ruby_path="$(brew --prefix ruby)/bin/ruby"
 

@@ -1,6 +1,8 @@
 [[ -z "$SHUNIT2"     ]] && SHUNIT2=/usr/share/shunit2/shunit2
 [[ -n "$ZSH_VERSION" ]] && setopt shwordsplit
 
+test_ruby_version=$(ruby -e 'print RUBY_VERSION')
+
 function oneTimeSetUp() { return; }
 function setUp() { return; }
 function tearDown() { return; }
