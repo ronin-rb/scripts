@@ -216,7 +216,8 @@ function auto_install_ruby()
 		log "Installing ruby 3.x ..."
 		case "$package_manager" in
 			brew)		homebrew_install_ruby ;;
-			dnf|yum|zypper)	install_packages ruby-devel ;;
+			dnf|yum)	install_packages ruby-devel ruby-bundled-gems ;;
+			zypper)		install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
 			pacman)		install_packages community/ruby ;;
 			*)		install_packages ruby ;;
