@@ -55,8 +55,6 @@ HTTP, [scanning for web vulnerabilities][ronin-vulns-synopsis],
   [zypper], [pkg], [macports], [brew]).
 * Auto-installs any missing external dependencies via the package manager:
   * [libreadline]
-  * [libxml2]
-  * [libxslt][libxslt]
   * [libsqlite3][sqlite]
   * [ruby-3.x][ruby]
   * [rubygems]
@@ -122,8 +120,6 @@ wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ron
 
 [libreadline]: https://tiswww.case.edu/php/chet/readline/rltop.html
 [sqlite]: https://www.sqlite.org/index.html
-[libxml2]: https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home
-[libxslt]: http://xmlsoft.org/libxslt/index.html
 [gcc]: http://gcc.gnu.org/
 [make]: https://www.gnu.org/software/automake/
 [ruby]: https://www.ruby-lang.org/
