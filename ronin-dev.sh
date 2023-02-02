@@ -289,6 +289,18 @@ function auto_install_gcc()
 	fi
 }
 
+function auto_install_gpp()
+{
+	if ! command -v c++ >/dev/null; then
+		log "Installing g++ ..."
+		case "$package_manager" in
+			dnf|yum)	install_packages gcc-g++ ;;
+			zypper)		install_packages gcc-c++ ;;
+			*)		install_packages g++ ;;
+		esac || fail "Failed to install g++!"
+	fi
+}
+
 function auto_install_make()
 {
 	if ! command -v make >/dev/null; then
@@ -378,6 +390,7 @@ parse_options "$@" || exit $?
 detect_system
 auto_install_git
 auto_install_gcc
+auto_install_gpp
 auto_install_make
 auto_install_ruby
 auto_install_bundler
