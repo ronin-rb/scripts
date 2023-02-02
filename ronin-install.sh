@@ -42,7 +42,7 @@ function error()
 }
 
 #
-# Prints an error message and exists with -1.
+# Prints an error message and exits with -1.
 #
 function fail()
 {
