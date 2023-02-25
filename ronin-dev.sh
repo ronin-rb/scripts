@@ -30,6 +30,7 @@ github_repos=(
 	ronin-web-server
 	ronin-web-spider
 	ronin-web-user_agents
+	rubocop-ronin
 	scripts
 )
 

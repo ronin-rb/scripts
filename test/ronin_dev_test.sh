@@ -178,6 +178,11 @@ function test_ronin_web_user_agents_repo()
 	assertGitRepo "did not successfully git clone the ronin-web-user_agents repo" "$HOME/src/ronin-rb/ronin-web-user_agents"
 }
 
+function test_rubocop_ronin_repo()
+{
+	assertGitRepo "did not successfully git clone the rubocop-ronin repo" "$HOME/src/ronin-rb/rubocop-ronin"
+}
+
 function test_scripts_repo()
 {
 	assertGitRepo "did not successfully git clone the scripts repo" "$HOME/src/ronin-rb/scripts"
