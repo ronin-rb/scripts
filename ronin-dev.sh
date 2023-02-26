@@ -178,11 +178,11 @@ function detect_system()
 
 function detect_rubygems_install_dir()
 {
-	local gem_home="$(gem env gemdir)"
+	local gem_dir="$(gem env gemdir)"
 
 	if (( UID == 0 )); then
 		gem_opts+=(--no-user-install)
-	elif [[ -d "$gem_home" ]] && [[ ! -w "$gem_home" ]]; then
+	elif [[ -d "$gem_dir" ]] && [[ ! -w "$gem_dir" ]]; then
 		gem="sudo $gem"
 		gem_opts+=(--no-user-install)
 	fi
