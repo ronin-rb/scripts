@@ -368,3 +368,8 @@ if [[ ! "$ruby_version" == "3."* ]] && [[ "$package_manager" == "brew" ]]; then
 	warn "Ruby ${ruby_version} was installed via Homebrew."
 	warn "You will need to restart your shell or open a new terminal."
 fi
+
+log "You can now run ronin:"
+echo
+echo "	$ ronin help"
+echo
