@@ -426,6 +426,12 @@ popd >/dev/null
 
 log "Successfully setup a development environment in ${ronin_src_dir}"
 
+echo
+for dir in "${ronin_src_dir}"/*; do
+	echo "	$dir"
+done
+echo
+
 if [[ ! "$ruby_version" == "3."* ]] && [[ "$package_manager" == "brew" ]]; then
 	warn "Ruby ${ruby_version} was installed via Homebrew."
 	warn "You will need to restart your shell or open a new terminal."
