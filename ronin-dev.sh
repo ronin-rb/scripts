@@ -28,6 +28,7 @@ github_repos=(
 	ronin-vulns
 	ronin-web
 	ronin-web-server
+	ronin-web-session_cookie
 	ronin-web-spider
 	ronin-web-user_agents
 	rubocop-ronin

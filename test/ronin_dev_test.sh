@@ -168,6 +168,11 @@ function test_ronin_web_server_repo()
 	assertGitRepo "did not successfully git clone the ronin-web-server repo" "$HOME/src/ronin-rb/ronin-web-server"
 }
 
+function test_ronin_web_session_cookie_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-web-session_cookie repo" "$HOME/src/ronin-rb/ronin-web-session_cookie"
+}
+
 function test_ronin_web_spider_repo()
 {
 	assertGitRepo "did not successfully git clone the ronin-web-spider repo" "$HOME/src/ronin-rb/ronin-web-spider"
