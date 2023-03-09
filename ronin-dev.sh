@@ -20,6 +20,7 @@ github_repos=(
 	ronin-db-activerecord
 	ronin-exploits
 	ronin-fuzzer
+	ronin-nmap
 	ronin-payloads
 	ronin-post_ex
 	ronin-rb.github.io

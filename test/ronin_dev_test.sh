@@ -118,6 +118,11 @@ function test_ronin_fuzzer_repo()
 	assertGitRepo "did not successfully git clone the ronin-fuzzer repo" "$HOME/src/ronin-rb/ronin-fuzzer"
 }
 
+function test_ronin_nmap_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-nmap repo" "$HOME/src/ronin-rb/ronin-nmap"
+}
+
 function test_ronin_payloads_repo()
 {
 	assertGitRepo "did not successfully git clone the ronin-payloads repo" "$HOME/src/ronin-rb/ronin-payloads"
