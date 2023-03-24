@@ -108,6 +108,21 @@ function test_ronin_db_activerecord_repo()
 	assertGitRepo "did not successfully git clone the ronin-db-activerecord repo" "$HOME/src/ronin-rb/ronin-db-activerecord"
 }
 
+function test_ronin_exfil_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-exfil repo" "$HOME/src/ronin-rb/ronin-exfil"
+}
+
+function test_ronin_exfil_dns_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-exfil-dns repo" "$HOME/src/ronin-rb/ronin-exfil-dns"
+}
+
+function test_ronin_exfil_http_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-exfil-http repo" "$HOME/src/ronin-rb/ronin-exfil-http"
+}
+
 function test_ronin_exploits_repo()
 {
 	assertGitRepo "did not successfully git clone the ronin-exploits repo" "$HOME/src/ronin-rb/ronin-exploits"

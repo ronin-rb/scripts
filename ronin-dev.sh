@@ -18,6 +18,9 @@ github_repos=(
 	ronin-core
 	ronin-db
 	ronin-db-activerecord
+	ronin-exfil
+	ronin-exfil-dns
+	ronin-exfil-http
 	ronin-exploits
 	ronin-fuzzer
 	ronin-masscan
