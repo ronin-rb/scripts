@@ -293,6 +293,23 @@ function auto_install_make()
 }
 
 #
+# Install external dependencies for ronin.
+#
+function install_dependencies()
+{
+	case "$package_manager" in
+		dnf|yum)libraries=(readline-devel sqlite-devel) ;;
+		zypper)	libraries=(readline-devel sqlite3-devel) ;;
+		apt)	libraries=(libreadline-dev libsqlite3-dev) ;;
+		*)	libraries=(readline sqlite) ;;
+	esac
+
+	log "Installing external dependencies ..."
+	install_packages "${libraries[@]}" || \
+	  warn "Failed to install external dependencies. Proceeding anyways."
+}
+
+#
 # Print the --help usage.
 #
 function print_usage()
@@ -352,24 +369,6 @@ auto_install_gcc
 auto_install_gpp
 auto_install_make
 auto_install_ruby
-
-#
-# Install external dependencies for ronin.
-#
-function install_dependencies()
-{
-	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel sqlite-devel) ;;
-		zypper)	libraries=(readline-devel sqlite3-devel) ;;
-		apt)	libraries=(libreadline-dev libsqlite3-dev) ;;
-		*)	libraries=(readline sqlite) ;;
-	esac
-
-	log "Installing external dependencies ..."
-	install_packages "${libraries[@]}" || \
-	  warn "Failed to install external dependencies. Proceeding anyways."
-}
-
 install_dependencies
 
 if ! command -v ronin >/dev/null; then
