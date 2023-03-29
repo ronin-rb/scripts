@@ -167,6 +167,9 @@ function detect_package_manager()
 	esac
 }
 
+#
+# Detect the ruby version.
+#
 function detect_ruby_version()
 {
 	if command -v ruby >/dev/null; then
@@ -174,6 +177,9 @@ function detect_ruby_version()
 	fi
 }
 
+#
+# Detect the system.
+#
 function detect_system()
 {
 	check_lang
@@ -183,6 +189,9 @@ function detect_system()
 	detect_ruby_version
 }
 
+#
+# Detect where rubygems installs gems into and whether it's writable.
+#
 function detect_rubygems_install_dir()
 {
 	local gem_dir="$(gem env gemdir)"
@@ -273,6 +282,9 @@ function auto_install_ruby()
 	auto_install_rubygems
 }
 
+#
+# Install rubygems if it's missing.
+#
 function auto_install_rubygems()
 {
 	if ! command -v gem >/dev/null; then
@@ -289,6 +301,9 @@ function auto_install_rubygems()
 	detect_rubygems_install_dir
 }
 
+#
+# Install gcc if there's no C compiler on the system.
+#
 function auto_install_gcc()
 {
 	if ! command -v cc >/dev/null; then
@@ -297,6 +312,9 @@ function auto_install_gcc()
 	fi
 }
 
+#
+# Install g++ if there's no C++ compiler on the system.
+#
 function auto_install_gpp()
 {
 	if ! command -v c++ >/dev/null; then
@@ -309,6 +327,9 @@ function auto_install_gpp()
 	fi
 }
 
+#
+# Install make if it's not already installed.
+#
 function auto_install_make()
 {
 	if ! command -v make >/dev/null; then
@@ -332,6 +353,9 @@ function auto_install_bundler()
 	fi
 }
 
+#
+# Install external dependencies for ronin.
+#
 function install_dependencies()
 {
 	case "$package_manager" in
@@ -346,6 +370,9 @@ function install_dependencies()
 	  warn "Failed to install external dependencies. Proceeding anyways."
 }
 
+#
+# Print the --help usage.
+#
 function print_usage()
 {
 	cat <<USAGE
@@ -360,6 +387,9 @@ Options:
 USAGE
 }
 
+#
+# Parse additional command-line options.
+#
 function parse_options()
 {
 	local argv=()
