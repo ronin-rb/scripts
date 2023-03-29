@@ -207,7 +207,7 @@ CONFIG
 }
 
 #
-# Installs git, if it's not installed.
+# Installs ruby 3, if it's not installed.
 #
 function auto_install_ruby()
 {
