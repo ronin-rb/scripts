@@ -168,6 +168,11 @@ function test_ronin_website_symlink()
 	assertTrue "did not successfully create the website -> ronin-rb.github.io symlink" '[[ -L "$HOME/src/ronin-rb/website" ]] && [[ -e "$HOME/src/ronin-rb/website" ]]'
 }
 
+function test_ronin_recon_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-recon repo" "$HOME/src/ronin-rb/ronin-recon"
+}
+
 function test_ronin_repos_repo()
 {
 	assertGitRepo "did not successfully git clone the ronin-repos repo" "$HOME/src/ronin-rb/ronin-repos"

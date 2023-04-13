@@ -29,6 +29,7 @@ github_repos=(
 	ronin-payloads
 	ronin-post_ex
 	ronin-rb.github.io
+	ronin-recon
 	ronin-repos
 	ronin-support
 	ronin-vulns
