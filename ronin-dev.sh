@@ -21,7 +21,7 @@ github_repos=(
 	ronin-dns-proxy
 	ronin-exfil
 	ronin-listener-dns
-	ronin-exfil-http
+	ronin-listener-http
 	ronin-exploits
 	ronin-fuzzer
 	ronin-masscan
