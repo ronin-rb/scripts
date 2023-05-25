@@ -113,9 +113,9 @@ function test_ronin_dns_proxy_repo()
 	assertGitRepo "did not successfully git clone the ronin-dns-proxy repo" "$HOME/src/ronin-rb/ronin-dns-proxy"
 }
 
-function test_ronin_exfil_repo()
+function test_ronin_listener_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-exfil repo" "$HOME/src/ronin-rb/ronin-exfil"
+	assertGitRepo "did not successfully git clone the ronin-listener repo" "$HOME/src/ronin-rb/ronin-listener"
 }
 
 function test_ronin_listener_dns_repo()

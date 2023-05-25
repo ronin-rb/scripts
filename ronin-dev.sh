@@ -19,7 +19,7 @@ github_repos=(
 	ronin-db
 	ronin-db-activerecord
 	ronin-dns-proxy
-	ronin-exfil
+	ronin-listener
 	ronin-listener-dns
 	ronin-listener-http
 	ronin-exploits
