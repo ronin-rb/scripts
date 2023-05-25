@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-. ./test/helper.sh
-
 ./ronin-install.sh
+
+. ./test/helper.sh
 
 function test_gcc_installed()
 {

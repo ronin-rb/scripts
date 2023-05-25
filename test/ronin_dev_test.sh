@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-. ./test/helper.sh
-
 ./ronin-dev.sh
+
+. ./test/helper.sh
 
 function test_git_installed()
 {
