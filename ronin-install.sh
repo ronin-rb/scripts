@@ -398,7 +398,7 @@ if [[ ! "$ruby_version" == "3."* ]] && [[ "$package_manager" == "brew" ]]; then
 	warn "You will need to restart your shell or open a new terminal."
 fi
 
-log "You can now run ronin:"
+log "Congratulations! You can now run ronin:"
 echo
 echo "	$ ronin help"
 echo
