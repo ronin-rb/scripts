@@ -3,7 +3,6 @@
 * [Website](https://ronin-rb.dev)
 * [Issues](https://github.com/ronin-rb/scripts/issues)
 * [Discord](https://discord.gg/6WAb3PsVX9) |
-  [Twitter](https://twitter.com/ronin_rb) |
   [Mastodon](https://infosec.exchange/@ronin_rb)
 
 A repository of useful setup scripts.
