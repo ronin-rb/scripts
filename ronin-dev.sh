@@ -360,7 +360,7 @@ function auto_install_bundler()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel sqlite-devel) ;;
+		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel) ;;
 		zypper)	libraries=(readline-devel sqlite3-devel) ;;
 		apt)	libraries=(libreadline-dev libsqlite3-dev) ;;
 		*)	libraries=(readline sqlite) ;;
