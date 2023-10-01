@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "ronin-install.sh on Ubuntu"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: sudo apt-get update -qq -y && sudo apt-get install -qq -y shunit2
       - name: Configure env
@@ -34,7 +34,7 @@ jobs:
     container: fedora:latest
     name: "ronin-install.sh on Fedora Linux"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: dnf update -q -y && dnf install -q -y shunit2
       - name: Configure env
@@ -49,7 +49,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: zypper ref && zypper --non-interactive in tar gzip findutils shunit2
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
@@ -60,7 +60,7 @@ jobs:
     container: archlinux:latest
     name: "ronin-install.sh on ArchLinux"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           pacman-key --init && \
@@ -80,7 +80,7 @@ jobs:
     runs-on: macos-latest
     name: "ronin-install.sh on macOS"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: brew install shunit2
       - name: Configure env
