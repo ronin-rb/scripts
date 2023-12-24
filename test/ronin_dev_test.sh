@@ -88,6 +88,11 @@ function test_ronin_agent_ruby_repo()
 	assertGitRepo "did not successfully git clone the ronin-agent-ruby repo" "$HOME/src/ronin-rb/ronin-agent-ruby"
 }
 
+function test_ronin_brute_repo()
+{
+	assertGitRepo "did not successfully git clone the ronin-brute repo" "$HOME/src/ronin-rb/ronin-brute"
+}
+
 function test_ronin_asm_repo()
 {
 	assertGitRepo "did not successfully git clone the ronin-code-asm repo" "$HOME/src/ronin-rb/ronin-code-asm"
