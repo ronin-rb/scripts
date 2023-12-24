@@ -228,4 +228,15 @@ function test_scripts_repo()
 	assertGitRepo "did not successfully git clone the scripts repo" "$HOME/src/ronin-rb/scripts"
 }
 
+function test_bundle_install()
+{
+	local ret
+
+	cd "$HOME/src/ronin-rb/ronin"
+	bundle install
+	ret=$?
+
+	assertEquals "did not successfully run bundle install" $ret 0
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
