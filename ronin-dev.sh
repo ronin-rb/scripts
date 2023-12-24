@@ -363,7 +363,7 @@ function install_dependencies()
 		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel) ;;
 		zypper)	libraries=(readline-devel libyaml-devel sqlite3-devel) ;;
 		apt)	libraries=(libreadline-dev libsqlite3-dev libyaml-dev) ;;
-		*)	libraries=(readline sqlite) ;;
+		*)	libraries=(readline libyaml sqlite) ;;
 	esac
 
 	log "Installing external dependencies ..."
