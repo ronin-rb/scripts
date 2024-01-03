@@ -363,7 +363,7 @@ function install_dependencies()
 	case "$package_manager" in
 		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel) ;;
 		zypper)	libraries=(awk readline-devel libyaml-devel sqlite3-devel) ;;
-		apt)	libraries=(libreadline-dev libsqlite3-dev libyaml-dev) ;;
+		apt)	libraries=(libreadline-dev libyaml-dev libsqlite3-dev) ;;
 		*)	libraries=(readline libyaml sqlite) ;;
 	esac
 
