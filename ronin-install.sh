@@ -228,7 +228,6 @@ function auto_install_ruby()
 			dnf|yum)	install_packages ruby-devel ruby-bundled-gems ;;
 			zypper)		install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
-			pacman)		install_packages ruby ;;
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
@@ -244,8 +243,7 @@ function auto_install_rubygems()
 	if ! command -v gem >/dev/null; then
 		log "Installing rubygems ..."
 		case "$package_manager" in
-			dnf|yum)	install_packages rubygems ;;
-			pacman)		install_packages rubygems ;;
+			dnf|yum|pacman)	install_packages rubygems ;;
 			*)
 				fail "rubygems was not installed along with ruby. Aborting!"
 				;;
