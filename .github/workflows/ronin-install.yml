@@ -76,6 +76,23 @@ jobs:
       - name: Run tests
         run: ./test/ronin_install_test.sh
 
+  termux:
+    runs-on: ubuntu-latest
+    container: termux/termux-docker:latest
+    name: "ronin-install.sh on Termux"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          pkg update -y && \
+          pkg upgrade -y -o Dpkg::Options::="--force-confnew" && \
+          pkg install -y git -o Dpkg::Options::="--force-confnew" && \
+          git clone --depth 1 https://github.com/kward/shunit2.git
+      - name: Configure env
+        run: echo "SHUNIT2=\"$PWD/shunit2/shunit2\"" >> $GITHUB_ENV
+      - name: Run tests
+        run: ./test/ronin_install_test.sh
+
   macos:
     runs-on: macos-latest
     name: "ronin-install.sh on macOS"
