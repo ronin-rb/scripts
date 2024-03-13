@@ -111,6 +111,8 @@ function detect_package_manager()
 				elif command -v zypper >/dev/null; then
 					package_manager="zypper"
 				fi
+			elif [[ "$HOME" == *"com.termux"* ]]; then
+				package_manager="termux"
 			fi
 			;;
 		Darwin)
@@ -192,6 +194,7 @@ function install_packages()
 			fi
 			;;
 		zypper) $sudo zypper -n in -l $* || return $? ;;
+		termux)	pkg install -y "$@" || return $? ;;
 		"")	warn "Could not determine Package Manager. Proceeding anyway." ;;
 	esac
 }
@@ -255,28 +258,54 @@ function auto_install_rubygems()
 }
 
 #
-# Install gcc if there's no C compiler on the system.
+# Install gcc or clang if there's no C compiler on the system.
 #
-function auto_install_gcc()
+function auto_install_cc()
 {
 	if ! command -v cc >/dev/null; then
-		log "Installing gcc ..."
-		install_packages gcc || fail "Failed to install gcc!"
+		case "$package_manager" in
+			termux)
+				log "Installing clang ..."
+				install_packages clang || \
+				  fail "Failed to install clang!"
+				;;
+			*)
+				log "Installing gcc ..."
+				install_packages gcc || \
+				  fail "Failed to install gcc!"
+				;;
+		esac
 	fi
 }
 
 #
-# Install g++ if there's no C++ compiler on the system.
+# Install g++ or clang if there's no C++ compiler on the system.
 #
-function auto_install_gpp()
+function auto_install_cpp()
 {
 	if ! command -v c++ >/dev/null; then
-		log "Installing g++ ..."
 		case "$package_manager" in
-			dnf|yum)	install_packages gcc-g++ ;;
-			zypper)		install_packages gcc-c++ ;;
-			*)		install_packages g++ ;;
-		esac || fail "Failed to install g++!"
+			dnf|yum)
+				log "Installing g++ ..."
+				install_packages gcc-g++ || \
+				  fail "Failed to install g++!"
+				;;
+			zypper)
+				log "Installing g++ ..."
+				install_packages gcc-c++ || \
+				  fail "Failed to install g++!"
+				;;
+			termux)
+				log "Installing clang ..."
+				install_packages clang || \
+				  fail "Failed to install clang!"
+				;;
+			*)
+				log "Installing g++ ..."
+				install_packages g++ || \
+				  fail "Failed to install g++!"
+				;;
+		esac
 	fi
 }
 
@@ -308,18 +337,37 @@ function auto_install_pkg_config()
 }
 
 #
+# Explicitly install nokogiri on Termux by building it against the system's
+# libxml2 and libxslt packages.
+#
+function termux_install_nokogiri()
+{
+	# XXX: compile nokogiri against the system's libxml2 library,
+	# to workaround issue with the libxml2 tar archive containing
+	# hardlinks.
+	$gem install nokogiri --platform ruby -- --use-system-libraries || \
+	  warn "Failed to compile nokogiri. Proceeding anyways."
+}
+
+#
 # Install external dependencies for ronin.
 #
 function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(libyaml-devel git zip) ;;
+		termux) libraries=(binutils libxml2 libxslt git zip) ;;
 		*)	libraries=(git zip) ;;
 	esac
 
 	log "Installing external dependencies ..."
 	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
+
+	if [[ "$package_manager" == "termux" ]] && \
+	   [[ -z "$(gem which nokogiri 2>/dev/null)" ]]; then
+		termux_install_nokogiri
+	fi
 }
 
 #
@@ -378,8 +426,8 @@ function parse_options()
 
 parse_options "$@" || exit $?
 detect_system
-auto_install_gcc
-auto_install_gpp
+auto_install_cc
+auto_install_cpp
 auto_install_make
 auto_install_pkg_config
 auto_install_ruby
