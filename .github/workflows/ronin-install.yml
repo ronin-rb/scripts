@@ -89,6 +89,8 @@ jobs:
       - name: Install shunit2
         run: git clone --depth 1 https://github.com/kward/shunit2.git /data/data/com.termux/files/home/shunit2
       - uses: actions/checkout@v4
+        with:
+          entrypoint: /entrypoint_root.sh
       - name: Run tests
         run: /entrypoint.sh /bin/sh -c "./test/ronin_install_test.sh"
         env:
