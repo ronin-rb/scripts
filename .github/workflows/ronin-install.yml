@@ -83,18 +83,23 @@ jobs:
     name: "ronin-install.sh on Termux"
     steps:
       - name: Install dependencies
-        run: /entrypoint.sh /bin/sh -c "apt-get update -qq -y && apt-get install -qq -y nodejs && pkg install -y git -o Dpkg::Options::='--force-confnew' && git clone --depth 1 https://github.com/kward/shunit2.git"
+        run:  /entrypoint.sh /bin/sh -c "apt-get update -qq -y && apt-get install -qq -y nodejs git"
+        env:
+          HOME: /data/data/com.termux/files/home
+      - name: Install shunit2
+        run: /entrypoint.sh git clone --depth 1 https://github.com/kward/shunit2.git
         env:
           HOME: /data/data/com.termux/files/home
       - uses: actions/checkout@v4
         with:
           entrypoint: /entrypoint.sh
-      - name: Configure env
-        run: echo "SHUNIT2=\"$PWD/shunit2/shunit2\"" >> $GITHUB_ENV
-      - name: Run tests
-        run: /entrypoint.sh "./test/ronin_install_test.sh"
         env:
           HOME: /data/data/com.termux/files/home
+      - name: Run tests
+        run: /entrypoint.sh ./test/ronin_install_test.sh
+        env:
+          HOME: /data/data/com.termux/files/home
+          SHUNIT2: /home/github/shunit2/shunit2
 
   macos:
     runs-on: macos-latest
