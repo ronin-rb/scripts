@@ -53,6 +53,11 @@ function test_bundle_installed()
 	assertCommandInstalled "did not successfully install bundler" 'bundle'
 }
 
+function test_zip_install()
+{
+	assertCommandInstalled "did not successfully install zip" 'zip'
+}
+
 function test_src_dir()
 {
 	assertDirectory "did not successfully create the ~/src directory" "$HOME/src"

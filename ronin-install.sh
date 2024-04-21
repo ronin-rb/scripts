@@ -296,10 +296,10 @@ function auto_install_make()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel git) ;;
-		zypper)	libraries=(readline-devel sqlite3-devel git) ;;
-		apt)	libraries=(libreadline-dev libsqlite3-dev git) ;;
-		*)	libraries=(readline sqlite git) ;;
+		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel git zip) ;;
+		zypper)	libraries=(readline-devel sqlite3-devel git zip) ;;
+		apt)	libraries=(libreadline-dev libsqlite3-dev git zip) ;;
+		*)	libraries=(readline sqlite git zip) ;;
 	esac
 
 	log "Installing external dependencies ..."

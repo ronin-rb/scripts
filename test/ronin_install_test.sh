@@ -43,6 +43,11 @@ function test_ruby_3_x_installed()
 		   '[[ "$ruby_version" == "3."* ]]'
 }
 
+function test_zip_install()
+{
+	assertCommandInstalled "did not successfully install zip" 'zip'
+}
+
 function test_git_install()
 {
 	assertCommandInstalled "did not successfully install git" 'git'
