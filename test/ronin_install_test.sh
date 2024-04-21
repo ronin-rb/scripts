@@ -43,6 +43,11 @@ function test_ruby_3_x_installed()
 		   '[[ "$ruby_version" == "3."* ]]'
 }
 
+function test_git_install()
+{
+	assertCommandInstalled "did not successfully install git" 'git'
+}
+
 function test_ronin_install()
 {
 	assertCommandInstalled "did not successfully install ronin" 'ronin'
