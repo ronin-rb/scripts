@@ -296,10 +296,8 @@ function auto_install_make()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel libyaml-devel git zip) ;;
-		zypper)	libraries=(readline-devel git zip) ;;
-		apt)	libraries=(libreadline-dev git zip) ;;
-		*)	libraries=(readline git zip) ;;
+		dnf|yum)libraries=(libyaml-devel git zip) ;;
+		*)	libraries=(git zip) ;;
 	esac
 
 	log "Installing external dependencies ..."

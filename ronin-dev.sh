@@ -359,10 +359,10 @@ function auto_install_bundler()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel libyaml-devel zip) ;;
-		zypper)	libraries=(awk readline-devel libyaml-devel zip) ;;
-		apt)	libraries=(libreadline-dev libyaml-dev zip) ;;
-		*)	libraries=(readline libyaml zip) ;;
+		dnf|yum)libraries=(libyaml-devel zip) ;;
+		zypper)	libraries=(awk libyaml-devel zip) ;;
+		apt)	libraries=(libyaml-dev zip) ;;
+		*)	libraries=(libyaml zip) ;;
 	esac
 
 	log "Installing external dependencies ..."

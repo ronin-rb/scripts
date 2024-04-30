@@ -54,7 +54,6 @@ HTTP, [scanning for web vulnerabilities][ronin-vulns-synopsis],
 * Auto-detects the package manager (supports [apt], [dnf], [yum], [pacman],
   [zypper], [pkg], [macports], [brew]).
 * Auto-installs any missing external dependencies via the package manager:
-  * [libreadline]
   * [ruby-3.x][ruby]
   * [rubygems]
   * [gcc]
@@ -116,7 +115,6 @@ wget -O ronin-dev.sh https://raw.githubusercontent.com/ronin-rb/scripts/main/ron
 [macports]: https://www.macports.org/
 [brew]: http://brew.sh
 
-[libreadline]: https://tiswww.case.edu/php/chet/readline/rltop.html
 [sqlite]: https://www.sqlite.org/index.html
 [gcc]: http://gcc.gnu.org/
 [make]: https://www.gnu.org/software/automake/
