@@ -90,10 +90,10 @@ jobs:
 
   freebsd:
     runs-on: ubuntu-latest
-    name: A job to run test in FreeBSD
+    name: "ronin-install.sh on FreeBSD"
     steps:
     - uses: actions/checkout@v4
-    - name: Test in FreeBSD
+    - name: Run tests
       id: freebsd
       uses: vmactions/freebsd-vm@v1
       with:
