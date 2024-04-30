@@ -340,6 +340,20 @@ function auto_install_make()
 }
 
 #
+# Install pkg-config if it's not already installed.
+#
+function auto_install_pkg_config()
+{
+	if ! command -v pkg-config >/dev/null; then
+		log "Install pkg-config ..."
+		case "$package_manager" in
+			# NOTE: FreeBSD needs pkg-config for sqlite3
+			pkg)	install_packages devel/pkgconf ;;
+		esac || fail "Failed to install pkg-config!"
+	fi
+}
+
+#
 # Installs bundler, if it's not installed.
 #
 function auto_install_bundler()
@@ -431,6 +445,7 @@ auto_install_git
 auto_install_gcc
 auto_install_gpp
 auto_install_make
+auto_install_pkg_config
 auto_install_ruby
 auto_install_bundler
 install_dependencies

@@ -292,6 +292,20 @@ function auto_install_make()
 }
 
 #
+# Install pkg-config if it's not already installed.
+#
+function auto_install_pkg_config()
+{
+	if ! command -v pkg-config >/dev/null; then
+		log "Install pkg-config ..."
+		case "$package_manager" in
+			# NOTE: FreeBSD needs pkg-config for sqlite3
+			pkg)	install_packages devel/pkgconf ;;
+		esac || fail "Failed to install pkg-config!"
+	fi
+}
+
+#
 # Install external dependencies for ronin.
 #
 function install_dependencies()
@@ -365,6 +379,7 @@ detect_system
 auto_install_gcc
 auto_install_gpp
 auto_install_make
+auto_install_pkg_config
 auto_install_ruby
 install_dependencies
 
