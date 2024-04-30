@@ -13,6 +13,11 @@ function assertCommandInstalled()
 	assertTrue "$1" "command -v \"$2\" >/dev/null"
 }
 
+function assertFile()
+{
+	assertTrue "$1" "[[ -f \"$2\" ]]"
+}
+
 function assertDirectory()
 {
 	assertTrue "$1" "[[ -d \"$2\" ]]"
