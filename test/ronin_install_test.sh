@@ -58,4 +58,12 @@ function test_ronin_install()
 	assertCommandInstalled "did not successfully install ronin" 'ronin'
 }
 
+function test_ronin_db_migrate()
+{
+	ronin-db migrate
+
+	assertFile "did not successfully create the ~/.local/share/ronin-db/default.sqlite3 database" \
+		   "$HOME/.local/share/ronin-db/default.sqlite3"
+}
+
 SHUNIT_PARENT=$0 . $SHUNIT2
