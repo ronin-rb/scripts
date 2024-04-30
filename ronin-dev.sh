@@ -292,6 +292,7 @@ function auto_install_rubygems()
 		log "Installing rubygems ..."
 		case "$package_manager" in
 			dnf|yum|pacman)	install_packages rubygems ;;
+			pkg)		install_packages devel/ruby-gems ;;
 			*)
 				fail "rubygems was not installed along with ruby. Aborting!"
 				;;
