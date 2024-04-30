@@ -55,7 +55,6 @@ HTTP, [scanning for web vulnerabilities][ronin-vulns-synopsis],
   [zypper], [pkg], [macports], [brew]).
 * Auto-installs any missing external dependencies via the package manager:
   * [libreadline]
-  * [libsqlite3][sqlite]
   * [ruby-3.x][ruby]
   * [rubygems]
   * [gcc]

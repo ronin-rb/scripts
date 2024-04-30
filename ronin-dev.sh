@@ -359,10 +359,10 @@ function auto_install_bundler()
 function install_dependencies()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(readline-devel libyaml-devel sqlite-devel zip) ;;
-		zypper)	libraries=(awk readline-devel libyaml-devel sqlite3-devel zip) ;;
-		apt)	libraries=(libreadline-dev libyaml-dev libsqlite3-dev zip) ;;
-		*)	libraries=(readline libyaml sqlite zip) ;;
+		dnf|yum)libraries=(readline-devel libyaml-devel zip) ;;
+		zypper)	libraries=(awk readline-devel libyaml-devel zip) ;;
+		apt)	libraries=(libreadline-dev libyaml-dev zip) ;;
+		*)	libraries=(readline libyaml zip) ;;
 	esac
 
 	log "Installing external dependencies ..."
