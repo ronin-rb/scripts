@@ -4,9 +4,9 @@
 
 . ./test/helper.sh
 
-function test_gcc_installed()
+function test_cc_installed()
 {
-	assertCommandInstalled "did not successfully install gcc" 'gcc'
+	assertCommandInstalled "did not successfully install cc" 'cc'
 }
 
 function test_make_installed()
