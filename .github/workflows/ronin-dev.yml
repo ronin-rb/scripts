@@ -98,6 +98,7 @@ jobs:
       uses: vmactions/freebsd-vm@v1
       with:
         usesh: true
+        copyback: false
         prepare: |
           pkg install -y shunit2
         run: |
