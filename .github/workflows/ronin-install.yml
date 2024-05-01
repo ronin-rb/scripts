@@ -1,4 +1,4 @@
-name: CI
+name: ronin-install.sh
 
 on:
   push:
