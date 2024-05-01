@@ -297,10 +297,12 @@ function auto_install_make()
 function auto_install_pkg_config()
 {
 	if ! command -v pkg-config >/dev/null; then
-		log "Install pkg-config ..."
+		# NOTE: BSDs needs pkg-config to compile the sqlite3 gem
 		case "$package_manager" in
-			# NOTE: FreeBSD needs pkg-config for sqlite3
-			pkg)	install_packages devel/pkgconf ;;
+			pkg)
+				log "Install pkg-config ..."
+				install_packages devel/pkgconf
+				;;
 		esac || fail "Failed to install pkg-config!"
 	fi
 }
