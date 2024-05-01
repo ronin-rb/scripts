@@ -218,6 +218,28 @@ PATH="\$(gem env gemdir)/bin:\$PATH"
 CONFIG
 }
 
+function pkg_add_ruby()
+{
+	local ruby_pkg="$(pkg_info -Q ruby | grep "^ruby-[0-9]" | tail -n 1)"
+
+	install_packages "$ruby_pkg"
+
+	ln -sf /usr/local/bin/ruby33 /usr/local/bin/ruby
+	ln -sf /usr/local/bin/bundle33 /usr/local/bin/bundle
+	ln -sf /usr/local/bin/bundler33 /usr/local/bin/bundler
+	ln -sf /usr/local/bin/erb33 /usr/local/bin/erb
+	ln -sf /usr/local/bin/gem33 /usr/local/bin/gem
+	ln -sf /usr/local/bin/irb33 /usr/local/bin/irb
+	ln -sf /usr/local/bin/racc33 /usr/local/bin/racc
+	ln -sf /usr/local/bin/rake33 /usr/local/bin/rake
+	ln -sf /usr/local/bin/rbs33 /usr/local/bin/rbs
+	ln -sf /usr/local/bin/rdbg33 /usr/local/bin/rdbg
+	ln -sf /usr/local/bin/rdoc33 /usr/local/bin/rdoc
+	ln -sf /usr/local/bin/ri33 /usr/local/bin/ri
+	ln -sf /usr/local/bin/syntax_suggest33 /usr/local/bin/syntax_suggest
+	ln -sf /usr/local/bin/typeprof33 /usr/local/bin/typeprof
+}
+
 #
 # Installs ruby 3, if it's not installed.
 #
@@ -228,10 +250,10 @@ function auto_install_ruby()
 		log "Installing ruby 3.x ..."
 		case "$package_manager" in
 			brew)		homebrew_install_ruby ;;
+			pkg_add)	pkg_add_ruby ;;
 			dnf|yum)	install_packages ruby-devel ruby-bundled-gems ;;
 			zypper)		install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
-			pkg_add)	install_packages "$(pkg_info -Q ruby | grep "^ruby-[0-9]" | tail -n 1)" ;;
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
