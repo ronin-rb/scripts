@@ -248,6 +248,7 @@ function auto_install_rubygems()
 		case "$package_manager" in
 			dnf|yum|pacman)	install_packages rubygems ;;
 			pkg)		install_packages devel/ruby-gems ;;
+			pkg_add)	install_packages ruby-gems ;;
 			*)
 				fail "rubygems was not installed along with ruby. Aborting!"
 				;;
@@ -305,6 +306,10 @@ function auto_install_pkg_config()
 			pkg)
 				log "Installing pkg-config ..."
 				install_packages devel/pkgconf
+				;;
+			pkg_add)
+				log "Installing pkg-config ..."
+				install_packages pkgconf
 				;;
 		esac || fail "Failed to install pkg-config!"
 	fi
