@@ -231,6 +231,7 @@ function auto_install_ruby()
 			dnf|yum)	install_packages ruby-devel ruby-bundled-gems ;;
 			zypper)		install_packages ruby-devel ;;
 			apt)		install_packages ruby-full ;;
+			pkg_add)	install_packages "$(pkg_info -Q ruby | grep "^ruby-[0-9]" | tail -n 1)" ;;
 			*)		install_packages ruby ;;
 		esac || fail "Failed to install ruby!"
 	fi
