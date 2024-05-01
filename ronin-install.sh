@@ -286,7 +286,7 @@ function auto_install_gpp()
 function auto_install_make()
 {
 	if ! command -v make >/dev/null; then
-		log "Install make ..."
+		log "Installing make ..."
 		install_packages make || fail "Failed to install make!"
 	fi
 }
@@ -300,7 +300,7 @@ function auto_install_pkg_config()
 		# NOTE: BSDs needs pkg-config to compile the sqlite3 gem
 		case "$package_manager" in
 			pkg)
-				log "Install pkg-config ..."
+				log "Installing pkg-config ..."
 				install_packages devel/pkgconf
 				;;
 		esac || fail "Failed to install pkg-config!"
