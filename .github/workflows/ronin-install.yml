@@ -103,3 +103,19 @@ jobs:
         run: |
           export SHUNIT2="$(command -v shunit2 2>/dev/null)"
           ./test/ronin_install_test.sh
+
+  openbsd:
+    runs-on: ubuntu-latest
+    name: "ronin-install.sh on OpenBSD"
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run tests
+      id: openbsd
+      uses: vmactions/openbsd-vm@v1
+      with:
+        usesh: true
+        prepare: |
+          pkg_add bash shunit2
+        run: |
+          export SHUNIT2="$(command -v shunit2 2>/dev/null)"
+          ./test/ronin_install_test.sh
