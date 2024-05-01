@@ -123,6 +123,8 @@ function detect_package_manager()
 		*BSD)
 			if command -v pkg >/dev/null; then
 				package_manager="pkg"
+			elif command -v pkg_add >/dev/null; then
+				package_manager="pkg_add"
 			fi
 			;;
 	esac
@@ -179,6 +181,7 @@ function install_packages()
 		dnf|yum)$sudo $package_manager install -y "$@" || return $?     ;;
 		port)   $sudo port install "$@" || return $?       ;;
 		pkg)	$sudo pkg install -y "$@" || return $?     ;;
+		pkg_add)$sudo pkg_add -I "$@" || return $?	           ;;
 		brew)
 			local brew_owner="$(/usr/bin/stat -f %Su "$(command -v brew)")"
 			sudo -u "$brew_owner" brew install "$@" ||
