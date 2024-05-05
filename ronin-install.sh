@@ -343,7 +343,7 @@ function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(libyaml-devel git zip) ;;
-		termux) libraries=(libxml2 libxslt git zip) ;;
+		termux) libraries=(binutils libxml2 libxslt git zip) ;;
 		*)	libraries=(git zip) ;;
 	esac
 
