@@ -343,12 +343,21 @@ function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(libyaml-devel git zip) ;;
+		termux) libraries=(libxml2 libxslt git zip) ;;
 		*)	libraries=(git zip) ;;
 	esac
 
 	log "Installing external dependencies ..."
 	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
+
+	if [[ "$package_manager" == "termux" ]]; then
+		# XXX: compile nokogiri against the system's libxml2 library,
+		# to workaround issue with the libxml2 tar archive containing
+		# hardlinks.
+		$gem install nokogiri --platform ruby -- --use-system-libraries || \
+		  warn "Failed to compile nokogiri. Proceeding anyways."
+	fi
 }
 
 #
