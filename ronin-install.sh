@@ -258,6 +258,17 @@ function auto_install_rubygems()
 }
 
 #
+# Installs binutils for ld and ar commands, if they aren't already installed.
+#
+function auto_install_binutils()
+{
+	if ! command -v ld >/dev/null || ! command -v ar >/dev/null; then
+		install_packages binutils || \
+		  fail "Failed to install binutils!"
+	fi
+}
+
+#
 # Install gcc or clang if there's no C compiler on the system.
 #
 function auto_install_cc()
@@ -356,7 +367,7 @@ function install_dependencies()
 {
 	case "$package_manager" in
 		dnf|yum)libraries=(libyaml-devel git zip) ;;
-		termux) libraries=(binutils libxml2 libxslt git zip) ;;
+		termux) libraries=(libxml2 libxslt git zip) ;;
 		*)	libraries=(git zip) ;;
 	esac
 
@@ -426,6 +437,7 @@ function parse_options()
 
 parse_options "$@" || exit $?
 detect_system
+auto_install_binutils
 auto_install_cc
 auto_install_cpp
 auto_install_make
