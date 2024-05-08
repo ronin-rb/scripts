@@ -263,6 +263,7 @@ function auto_install_rubygems()
 function auto_install_binutils()
 {
 	if ! command -v ld >/dev/null || ! command -v ar >/dev/null; then
+		log "Installing binutils ..."
 		install_packages binutils || \
 		  fail "Failed to install binutils!"
 	fi
@@ -356,6 +357,7 @@ function termux_install_nokogiri()
 	# XXX: compile nokogiri against the system's libxml2 library,
 	# to workaround issue with the libxml2 tar archive containing
 	# hardlinks.
+	log "Installing nokogiri ..."
 	$gem install nokogiri --platform ruby -- --use-system-libraries || \
 	  warn "Failed to compile nokogiri. Proceeding anyways."
 }
