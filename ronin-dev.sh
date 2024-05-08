@@ -483,7 +483,7 @@ log "Successfully setup a development environment in ${ronin_src_dir}"
 
 echo
 for dir in "${ronin_src_dir}"/*; do
-	echo "	$dir"
+	echo "	~/${dir#$HOME/}"
 done
 echo
 
