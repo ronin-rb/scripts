@@ -481,7 +481,7 @@ function auto_install_zip()
 	if ! command -v zip >/dev/null; then
 		log "Installing bundler ..."
 		install_packages zip || \
-		  warn "Failed to install zip. Proceeding anyways."
+		  warn "Failed to install zip. Proceeding anyways ..."
 	fi
 }
 

@@ -403,7 +403,7 @@ function auto_install_git()
 	if ! command -v git >/dev/null; then
 		log "Installing bundler ..."
 		install_packages git || \
-		  warn "Failed to install git. Proceeding anyways."
+		  warn "Failed to install git. Proceeding anyways ..."
 	fi
 }
 
@@ -415,7 +415,7 @@ function auto_install_zip()
 	if ! command -v zip >/dev/null; then
 		log "Installing bundler ..."
 		install_packages zip || \
-		  warn "Failed to install zip. Proceeding anyways."
+		  warn "Failed to install zip. Proceeding anyways ..."
 	fi
 }
 
