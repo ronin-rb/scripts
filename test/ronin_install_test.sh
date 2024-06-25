@@ -53,6 +53,23 @@ function test_git_install()
 	assertCommandInstalled "did not successfully install git" 'git'
 }
 
+# TODO: uncomment when ronin-2.1.0 is finally released.
+#
+# function test_nmap_install()
+# {
+# 	assertCommandInstalled "did not successfully install nmap" 'nmap'
+# }
+#
+# function test_masscan_install()
+# {
+# 	assertCommandInstalled "did not successfully install masscan" 'masscan'
+# }
+#
+# function test_graphviz_install()
+# {
+# 	assertCommandInstalled "did not successfully install GraphViz" 'dot'
+# }
+
 function test_ronin_install()
 {
 	assertCommandInstalled "did not successfully install ronin" 'ronin'
