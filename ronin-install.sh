@@ -420,12 +420,54 @@ function auto_install_zip()
 }
 
 #
+# Install nmap if it's not already installed.
+#
+function auto_install_nmap()
+{
+	if ! command -v nmap >/dev/null; then
+		log "Installing nmap ..."
+		install_packages nmap || \
+		  warn "Failed to install nmap. Proceeding anyways ..."
+	fi
+}
+
+#
+# Install masscan if it's not already installed.
+#
+function auto_install_masscan()
+{
+	if ! command -v masscan >/dev/null; then
+		log "Installing masscan ..."
+		install_packages masscan || \
+		  warn "Failed to install masscan. Proceeding anyways ..."
+	fi
+}
+
+#
+# Install GraphViz if it's not already installed.
+#
+function auto_install_graphviz()
+{
+	if ! command -v dot >/dev/null; then
+		log "Installing GraphViz ..."
+		install_packages graphviz || fail "Failed to install graphviz!"
+	fi
+}
+
+#
 # Install runtime dependencies for ronin.
 #
 function install_runtime_dependencies()
 {
 	auto_install_git
 	auto_install_zip
+
+	# TODO: remove prerelease check once ronin-2.1.0 is finally released
+	if [[ "$prerelease" == "true" ]]; then
+		auto_install_nmap
+		auto_install_masscan
+		auto_install_graphviz
+	fi
 }
 
 #
