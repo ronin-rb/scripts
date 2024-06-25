@@ -426,19 +426,19 @@ function termux_install_nokogiri()
 }
 
 #
-# Install external dependencies for ronin.
+# Install libraries and headers for other ronin's dependencies.
 #
-function install_dependencies()
+function install_libraries()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(libyaml-devel zip) ;;
-		zypper)	libraries=(awk libyaml-devel zip) ;;
-		apt)	libraries=(libyaml-dev zip) ;;
-		termux) libraries=(binutils libyaml libxml2 libxslt zip) ;;
-		*)	libraries=(libyaml zip) ;;
+		dnf|yum)libraries=(libyaml-devel) ;;
+		zypper)	libraries=(libyaml-devel) ;;
+		apt)	libraries=(libyaml-dev) ;;
+		termux) libraries=(libyaml libxml2 libxslt) ;;
+		*)	libraries=(libyaml) ;;
 	esac
 
-	log "Installing external dependencies ..."
+	log "Installing libraries ..."
 	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
 
@@ -446,6 +446,51 @@ function install_dependencies()
 	   [[ -z "$(gem which nokogiri 2>/dev/null)" ]]; then
 		termux_install_nokogiri
 	fi
+}
+
+#
+# Install awk, if it's already not installed.
+#
+function auto_install_awk()
+{
+	if ! command -v awk >/dev/null; then
+		log "Installing awk ..."
+		install_packages awk || fail "Failed to install awk!"
+	fi
+}
+
+#
+# Install external dependencies for ronin.
+#
+function install_build_dependencies()
+{
+	auto_install_binutils
+	auto_install_cc
+	auto_install_cpp
+	auto_install_make
+	auto_install_pkg_config
+	auto_install_awk
+	install_libraries
+}
+
+#
+# Installs zip, if it's not installed.
+#
+function auto_install_zip()
+{
+	if ! command -v zip >/dev/null; then
+		log "Installing bundler ..."
+		install_packages zip || \
+		  warn "Failed to install zip. Proceeding anyways."
+	fi
+}
+
+#
+# Install runtime dependencies for ronin.
+#
+function install_runtime_dependencies()
+{
+	auto_install_zip
 }
 
 #
@@ -505,14 +550,10 @@ function parse_options()
 parse_options "$@" || exit $?
 detect_system
 auto_install_git
-auto_install_binutils
-auto_install_cc
-auto_install_cpp
-auto_install_make
-auto_install_pkg_config
 auto_install_ruby
 auto_install_bundler
-install_dependencies
+install_build_dependencies
+install_runtime_dependencies
 
 mkdir -p "$ronin_src_dir"
 pushd "$ronin_src_dir"/ >/dev/null

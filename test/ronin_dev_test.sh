@@ -19,6 +19,11 @@ function test_make_installed()
 	assertCommandInstalled "did not successfully install make" 'make'
 }
 
+function test_awk_installed()
+{
+	assertCommandInstalled "did not successfully install awk" 'awk'
+}
+
 function test_ruby_3_x_installed()
 {
 	# check if ruby-3.x is already installed

@@ -363,17 +363,16 @@ function termux_install_nokogiri()
 }
 
 #
-# Install external dependencies for ronin.
+# Install libraries and headers for other ronin's dependencies.
 #
-function install_dependencies()
+function install_libraries()
 {
 	case "$package_manager" in
-		dnf|yum)libraries=(libyaml-devel git zip) ;;
-		termux) libraries=(libxml2 libxslt git zip) ;;
-		*)	libraries=(git zip) ;;
+		dnf|yum)libraries=(libyaml-devel) ;;
+		termux) libraries=(libxml2 libxslt) ;;
 	esac
 
-	log "Installing external dependencies ..."
+	log "Installing libraries ..."
 	install_packages "${libraries[@]}" || \
 	  warn "Failed to install external dependencies. Proceeding anyways."
 
@@ -381,6 +380,52 @@ function install_dependencies()
 	   [[ -z "$(gem which nokogiri 2>/dev/null)" ]]; then
 		termux_install_nokogiri
 	fi
+}
+
+#
+# Install external dependencies for ronin.
+#
+function install_build_dependencies()
+{
+	auto_install_binutils
+	auto_install_cc
+	auto_install_cpp
+	auto_install_make
+	auto_install_pkg_config
+	install_libraries
+}
+
+#
+# Installs git, if it's not installed.
+#
+function auto_install_git()
+{
+	if ! command -v git >/dev/null; then
+		log "Installing bundler ..."
+		install_packages git || \
+		  warn "Failed to install git. Proceeding anyways."
+	fi
+}
+
+#
+# Installs zip, if it's not installed.
+#
+function auto_install_zip()
+{
+	if ! command -v zip >/dev/null; then
+		log "Installing bundler ..."
+		install_packages zip || \
+		  warn "Failed to install zip. Proceeding anyways."
+	fi
+}
+
+#
+# Install runtime dependencies for ronin.
+#
+function install_runtime_dependencies()
+{
+	auto_install_git
+	auto_install_zip
 }
 
 #
@@ -439,13 +484,9 @@ function parse_options()
 
 parse_options "$@" || exit $?
 detect_system
-auto_install_binutils
-auto_install_cc
-auto_install_cpp
-auto_install_make
-auto_install_pkg_config
 auto_install_ruby
-install_dependencies
+install_build_dependencies
+install_runtime_dependencies
 
 if ! command -v ronin >/dev/null; then
 	if [[ "$prerelease" == "true" ]]; then
