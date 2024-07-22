@@ -462,13 +462,9 @@ function install_runtime_dependencies()
 {
 	auto_install_git
 	auto_install_zip
-
-	# TODO: remove prerelease check once ronin-2.1.0 is finally released
-	if [[ "$prerelease" == "true" ]]; then
-		auto_install_nmap
-		auto_install_masscan
-		auto_install_graphviz
-	fi
+	auto_install_nmap
+	auto_install_masscan
+	auto_install_graphviz
 }
 
 #
