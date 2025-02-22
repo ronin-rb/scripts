@@ -248,25 +248,6 @@ function auto_install_git()
 }
 
 #
-# Installs ruby via homebrew and configures it.
-#
-function homebrew_install_ruby()
-{
-	install_packages ruby
-	brew pin ruby
-
-	# make the homebrew ruby the default ruby for the script
-	PATH="$(brew --prefix ruby)/bin:$PATH"
-	hash -r
-
-	# make the homebrew ruby the default ruby for zshrc
-	cat >> ~/.zshrc <<CONFIG
-PATH="\$(brew --prefix ruby)/bin:\$PATH"
-PATH="\$(gem env gemdir)/bin:\$PATH"
-CONFIG
-}
-
-#
 # Installs git, if it's not installed.
 #
 function auto_install_ruby()
@@ -284,6 +265,25 @@ function auto_install_ruby()
 	fi
 
 	auto_install_rubygems
+}
+
+#
+# Installs ruby via homebrew and configures it.
+#
+function homebrew_install_ruby()
+{
+	install_packages ruby
+	brew pin ruby
+
+	# make the homebrew ruby the default ruby for the script
+	PATH="$(brew --prefix ruby)/bin:$PATH"
+	hash -r
+
+	# make the homebrew ruby the default ruby for zshrc
+	cat >> ~/.zshrc <<CONFIG
+PATH="\$(brew --prefix ruby)/bin:\$PATH"
+PATH="\$(gem env gemdir)/bin:\$PATH"
+CONFIG
 }
 
 #
