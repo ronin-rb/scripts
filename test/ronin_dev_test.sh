@@ -105,7 +105,7 @@ function test_ronin_brute_repo()
 
 function test_ronin_asm_repo()
 {
-	assertGitRepo "did not successfully git clone the ronin-code-asm repo" "$HOME/src/ronin-rb/ronin-code-asm"
+	assertGitRepo "did not successfully git clone the ronin-asm repo" "$HOME/src/ronin-rb/ronin-asm"
 }
 
 function test_ronin_core_repo()
