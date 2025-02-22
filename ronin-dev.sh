@@ -13,8 +13,8 @@ github_repos=(
 	ronin-agent-node
 	ronin-agent-php
 	ronin-agent-ruby
+	ronin-asm
 	ronin-brute
-	ronin-code-asm
 	ronin-code-sql
 	ronin-core
 	ronin-db
