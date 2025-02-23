@@ -4,6 +4,11 @@
 
 . ./test/helper.sh
 
+function test_cmp_installed()
+{
+	assertCommandInstalled "did not successfully install cmp" 'cmp'
+}
+
 function test_git_installed()
 {
 	assertCommandInstalled "did not successfully install git" 'git'

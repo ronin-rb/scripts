@@ -270,6 +270,17 @@ function auto_install_binutils()
 }
 
 #
+# Install diffutils, if it's already not installed.
+#
+function auto_install_diffutils()
+{
+	if ! command -v cmp >/dev/null; then
+		log "Installing diffutils ..."
+		install_packages diffutils || fail "Failed to install diffutils!"
+	fi
+}
+
+#
 # Install gcc or clang if there's no C compiler on the system.
 #
 function auto_install_cc()
@@ -392,6 +403,7 @@ function install_build_dependencies()
 	auto_install_cpp
 	auto_install_make
 	auto_install_pkg_config
+	auto_install_diffutils
 	install_libraries
 }
 
