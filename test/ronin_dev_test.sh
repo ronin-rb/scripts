@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 ./ronin-dev.sh
 
 . ./test/helper.sh
