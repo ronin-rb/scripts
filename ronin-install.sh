@@ -450,6 +450,14 @@ function auto_install_masscan()
 {
 	if ! command -v masscan >/dev/null; then
 		log "Installing masscan ..."
+		log $os_platform
+		log $(( -f /etc/SuSE-release ))	
+		if [[ "$os_platform" == "Linux" ]] && [[ -f /etc/SuSE-release ]]; then
+			log $os_platform
+			$sudo zypper addrepo https://download.opensuse.org/repositories/security/openSUSE_Tumbleweed/security.repo || return $?
+			$sudo zypper refresh || return $?
+		fi
+
 		install_packages masscan || \
 		  warn "Failed to install masscan. Proceeding anyways ..."
 	fi
