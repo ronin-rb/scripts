@@ -86,7 +86,7 @@ jobs:
       - name: Configure env
         run: echo "SHUNIT2=$(command -v shunit2 2>/dev/null)" >> $GITHUB_ENV
       - name: Run tests
-        run: ./test/ronin_install_test.sh
+        run: zsh ./test/ronin_install_test.sh
 
   freebsd:
     runs-on: ubuntu-latest
@@ -100,7 +100,7 @@ jobs:
         usesh: true
         copyback: false
         prepare: |
-          pkg install -y shunit2
+          pkg install -y shunit2 bash
         run: |
           export SHUNIT2="$(command -v shunit2 2>/dev/null)"
-          ./test/ronin_install_test.sh
+          bash ./test/ronin_install_test.sh
