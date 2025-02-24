@@ -100,7 +100,7 @@ jobs:
         usesh: true
         copyback: false
         prepare: |
-          pkg install -y shunit2
+          pkg install -y shunit2 bash
         run: |
           export SHUNIT2="$(command -v shunit2 2>/dev/null)"
-          ./test/ronin_dev_test.sh
+          bash ./test/ronin_dev_test.sh
