@@ -17,10 +17,12 @@ function test_make_installed()
 	assertCommandInstalled "did not successfully install make" 'make'
 }
 
-function test_ruby_3_x_installed()
+function test_at_least_ruby_3_1_installed()
 {
-	# check if ruby-3.x is already installed
-	if [[ "$test_ruby_version" == "3."* ]]; then
+	# check if ruby >= 3.1 is already installed
+	if [[ -n "$ruby_version" ]] &&
+	   [[ "$ruby_version" != "2."* ]] &&
+	   [[ "$ruby_version" != "3.0."* ]]; then
 		return
 	fi
 

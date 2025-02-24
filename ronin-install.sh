@@ -200,13 +200,15 @@ function install_packages()
 }
 
 #
-# Installs ruby 3, if it's not installed.
+# Installs ruby >= 3.1, if it's not installed.
 #
 function auto_install_ruby()
 {
-	# check if ruby-3.x is already installed
-	if [[ ! "$ruby_version" == "3."* ]]; then
-		log "Installing ruby 3.x ..."
+	# check if ruby >= 3.1 is already installed
+	if [[ -z "$ruby_version" ]] ||
+	   [[ "$ruby_version" == "2."* ]] ||
+	   [[ "$ruby_version" == "3.0."* ]]; then
+		log "Installing ruby >= 3.1 ..."
 		case "$package_manager" in
 			brew)		homebrew_install_ruby ;;
 			dnf|yum)	install_packages ruby-devel ruby-bundled-gems ;;
